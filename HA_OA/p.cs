@@ -22,6 +22,8 @@ namespace HA_OA
         public static string ConnStr = string.Empty;
         public static string dKey = "Edward86";
 
+        public static LoginIDInfo LoginID;
+
         #region 枚举
 
 
@@ -31,8 +33,19 @@ namespace HA_OA
             IPV6
         }
 
+
+        
+
         #endregion
 
+
+        public class LoginIDInfo
+        {
+            public string Name { set; get; }
+            public string Password { set; get; }
+        }
+
+        
 
 
 
@@ -173,6 +186,7 @@ namespace HA_OA
 
     }
 
+    
 
 
 

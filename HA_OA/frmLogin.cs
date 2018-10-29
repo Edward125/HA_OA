@@ -19,6 +19,7 @@ namespace HA_OA
 
 
         private string sPassword = string.Empty;
+        
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
@@ -28,6 +29,9 @@ namespace HA_OA
             p.ConnStr = "server=" + DES.DesDecrypt(p.DataBaseSeverName, p.dKey) + ";database="
                 + DES.DesDecrypt(p.DataBase, p.dKey) + ";userid=" + DES.DesDecrypt(p.DataBaseUid, p.dKey)
                 + ";password=" + DES.DesDecrypt(p.DataBasePwd, p.dKey);
+
+            p.LoginID = new p.LoginIDInfo();
+
 
 
             string sql = "SELECT userid FROM ha_user";
@@ -49,6 +53,7 @@ namespace HA_OA
 
                 if (DES.DesEncrypt(txtPassword.Text.Trim(), p.dKey) == sPassword)
                 {
+                    p.LoginID.Password = sPassword;
                     frmMain f = new frmMain();
                     f.Show();
                     this.Hide();
@@ -68,6 +73,7 @@ namespace HA_OA
             {
                 string sql = "select password from ha_user where userid = '" + comboUser.Text.Trim() + "'";
                 p.QueryDatabase(p.ConnStr, sql, "password", out sPassword);
+                p.LoginID.Name = comboUser.Text.Trim();
             }
         }
 
@@ -85,9 +91,9 @@ namespace HA_OA
             {
                 if (!string.IsNullOrEmpty(txtPassword.Text.Trim()))
                 {
-
                     if (DES.DesEncrypt(txtPassword.Text.Trim(), p.dKey) == sPassword)
                     {
+                        p.LoginID.Password = sPassword;
                         frmMain f = new frmMain();
                         f.Show();
                         this.Hide();
