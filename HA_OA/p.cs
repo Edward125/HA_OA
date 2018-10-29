@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using MySql.Data.MySqlClient;
+using System.Windows.Forms;
 
 namespace HA_OA
 {
@@ -11,12 +13,14 @@ namespace HA_OA
 
 
 
-        public static string DataBaseSeverName = "";
-        public static string DataBaseServerIP = "B9FC1ED2DC62F4BDF5497C3C96670804CE5138D6B86D3FE3";
+        public static string DataBaseSeverName = "B9FC1ED2DC62F4BDF5497C3C96670804CE5138D6B86D3FE3";
+        public static string DataBaseServerIP = "";
         public static string DataBase = "B9FC1ED2DC62F4BDB871E2DFAAC015A7";
         public static string DataBaseUid = "B9FC1ED2DC62F4BD165ABBC968B1E1FE";
         public static string DataBasePwd = "387F3D4BA2B3F17EB581D5A30D8437F3";
 
+        public static string ConnStr = string.Empty;
+        public static string dKey = "Edward86";
 
         #region 枚举
 
@@ -77,6 +81,96 @@ namespace HA_OA
         }
 
         #endregion
+
+
+
+
+
+
+        #region MySql
+
+        /// <summary>
+        /// 从数据库中查询数据
+        /// </summary>
+        /// <param name="connstr"></param>
+        /// <param name="sql"></param>
+        /// <param name="querykey"></param>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        public static bool  QueryDatabase(string connstr, string sql, string querykey,out List<string> result)
+        {
+            result = new List<string>();
+            MySqlConnection conn = new MySqlConnection(connstr);
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader re = cmd.ExecuteReader();
+                if (re.HasRows)
+                {
+                    while (re.Read())
+                      result.Add(re[querykey].ToString());
+                }
+
+            }
+            catch (Exception )
+            {
+              //  MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return true;
+       }
+
+
+        /// <summary>
+        /// 从数据库中查询数据
+        /// </summary>
+        /// <param name="connstr"></param>
+        /// <param name="sql"></param>
+        /// <param name="querykey"></param>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        public static bool QueryDatabase(string connstr, string sql, string querykey, out string result)
+        {
+            result = string.Empty;
+            MySqlConnection conn = new MySqlConnection(connstr);
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader re = cmd.ExecuteReader();
+                if (re.HasRows)
+                {
+                    while (re.Read())
+                    {
+                        result = re[querykey].ToString();
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return true;
+        }
+
+
+
+
+        #endregion
+
     }
 
 
