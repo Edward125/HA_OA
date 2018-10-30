@@ -39,7 +39,7 @@
             // 
             this.panel1.Location = new System.Drawing.Point(0, 65);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1002, 415);
+            this.panel1.Size = new System.Drawing.Size(840, 500);
             this.panel1.TabIndex = 0;
             // 
             // button1
@@ -75,7 +75,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1003, 481);
+            this.ClientSize = new System.Drawing.Size(839, 564);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnOTInfo);
             this.Controls.Add(this.button1);

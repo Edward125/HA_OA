@@ -15,5 +15,6 @@ namespace HA_OA
         {
             InitializeComponent();
         }
+
     }
 }

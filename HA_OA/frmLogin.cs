@@ -18,7 +18,7 @@ namespace HA_OA
         }
 
 
-        private string sPassword = string.Empty;
+       
         
 
         private void frmLogin_Load(object sender, EventArgs e)
@@ -51,9 +51,8 @@ namespace HA_OA
             if (!string.IsNullOrEmpty (txtPassword.Text.Trim ()))
             {
 
-                if (DES.DesEncrypt(txtPassword.Text.Trim(), p.dKey) == sPassword)
+                if (DES.DesEncrypt(txtPassword.Text.Trim(), p.dKey) == p.LoginID.Password )
                 {
-                    p.LoginID.Password = sPassword;
                     frmMain f = new frmMain();
                     f.Show();
                     this.Hide();
@@ -71,9 +70,11 @@ namespace HA_OA
         {
             if (comboUser.SelectedIndex != -1)
             {
-                string sql = "select password from ha_user where userid = '" + comboUser.Text.Trim() + "'";
-                p.QueryDatabase(p.ConnStr, sql, "password", out sPassword);
-                p.LoginID.Name = comboUser.Text.Trim();
+                string sql = "select * from ha_user where userid = '" + comboUser.Text.Trim() + "'";
+               // p.QueryDatabase(p.ConnStr, sql, "password", out sPassword);
+                p.LoadUserInfo(p.ConnStr, sql, comboUser.Text.Trim(), out p.LoginID);
+               
+               // p.LoginID.Name = comboUser.Text.Trim();
             }
         }
 
@@ -91,9 +92,8 @@ namespace HA_OA
             {
                 if (!string.IsNullOrEmpty(txtPassword.Text.Trim()))
                 {
-                    if (DES.DesEncrypt(txtPassword.Text.Trim(), p.dKey) == sPassword)
+                    if (DES.DesEncrypt(txtPassword.Text.Trim(), p.dKey) == p.LoginID.Password)
                     {
-                        p.LoginID.Password = sPassword;
                         frmMain f = new frmMain();
                         f.Show();
                         this.Hide();

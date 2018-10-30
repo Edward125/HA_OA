@@ -43,6 +43,8 @@ namespace HA_OA
         {
             public string Name { set; get; }
             public string Password { set; get; }
+            public string Department { set; get; }
+            public int Permission { set; get; }
         }
 
         
@@ -180,6 +182,52 @@ namespace HA_OA
         }
 
 
+
+
+
+        /// <summary>
+        /// 根据登陆的ID获取ID相关信息
+        /// </summary>
+        /// <param name="connstr"></param>
+        /// <param name="sql"></param>
+        /// <param name="userid"></param>
+        /// <param name="loginid"></param>
+        /// <returns></returns>
+        public  static bool LoadUserInfo(string connstr, string sql,string userid, out LoginIDInfo loginid)
+        {
+            loginid = new LoginIDInfo();
+            loginid.Name = userid;
+            MySqlConnection conn = new MySqlConnection(connstr);
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader re = cmd.ExecuteReader();
+                if (re.HasRows)
+                {
+                    while (re.Read())
+                    {
+                        loginid.Password = (string)re["password"];
+                        loginid.Permission = (int)re["permission"];
+                        loginid.Department = (string)re["depname"];
+
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+
+            return true;
+        }
 
 
         #endregion
