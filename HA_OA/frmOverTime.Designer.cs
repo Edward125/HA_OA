@@ -76,9 +76,9 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(777, 30);
+            this.btnReset.Location = new System.Drawing.Point(781, 30);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(63, 31);
+            this.btnReset.Size = new System.Drawing.Size(58, 31);
             this.btnReset.TabIndex = 9;
             this.btnReset.Text = "重置";
             this.btnReset.UseVisualStyleBackColor = true;
@@ -96,7 +96,7 @@
             // 
             this.txtReason.Location = new System.Drawing.Point(40, 55);
             this.txtReason.Name = "txtReason";
-            this.txtReason.Size = new System.Drawing.Size(653, 21);
+            this.txtReason.Size = new System.Drawing.Size(668, 21);
             this.txtReason.TabIndex = 7;
             // 
             // label3
@@ -157,12 +157,13 @@
             // 
             // btnAddNew
             // 
-            this.btnAddNew.Location = new System.Drawing.Point(708, 30);
+            this.btnAddNew.Location = new System.Drawing.Point(717, 30);
             this.btnAddNew.Name = "btnAddNew";
-            this.btnAddNew.Size = new System.Drawing.Size(63, 31);
+            this.btnAddNew.Size = new System.Drawing.Size(58, 31);
             this.btnAddNew.TabIndex = 0;
             this.btnAddNew.Text = "新增";
             this.btnAddNew.UseVisualStyleBackColor = true;
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
             // groupBox2
             // 
@@ -241,21 +242,21 @@
             // 
             // txtHours
             // 
-            this.txtHours.Location = new System.Drawing.Point(653, 20);
+            this.txtHours.Location = new System.Drawing.Point(646, 20);
             this.txtHours.Name = "txtHours";
             this.txtHours.ReadOnly = true;
-            this.txtHours.Size = new System.Drawing.Size(38, 21);
+            this.txtHours.Size = new System.Drawing.Size(62, 21);
             this.txtHours.TabIndex = 10;
             this.txtHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(614, 25);
+            this.label7.Location = new System.Drawing.Point(611, 25);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(29, 12);
             this.label7.TabIndex = 11;
-            this.label7.Text = "实数";
+            this.label7.Text = "时数";
             // 
             // frmOverTime
             // 
