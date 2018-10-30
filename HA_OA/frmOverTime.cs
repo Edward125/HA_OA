@@ -16,5 +16,30 @@ namespace HA_OA
             InitializeComponent();
         }
 
+        private void frmOverTime_Load(object sender, EventArgs e)
+        {
+            LoadUI();
+        }
+
+
+
+
+        private void LoadUI()
+        {
+            comboDep.Items.Clear();
+            comboDep.Items.Add(p.LoginID.Department);
+            comboDep.SelectedIndex = 0;
+        }
+
+        private void dtpStartTime_ValueChanged(object sender, EventArgs e)
+        {
+            txtHours.Text = TimeHelper.DateTimeDiff(dtpStartTime.Value, dtpEndTime.Value).ToString();
+        }
+
+        private void dtpEndTime_ValueChanged(object sender, EventArgs e)
+        {
+            txtHours.Text = TimeHelper.DateTimeDiff(dtpStartTime.Value, dtpEndTime.Value).ToString();
+        }
+
     }
 }
