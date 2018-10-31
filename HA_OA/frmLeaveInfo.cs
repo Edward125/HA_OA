@@ -37,18 +37,18 @@ namespace HA_OA
             int totolrecord = 0;
             double totalhours = 0.0;
            frmOverTime.LoadInfo2Listview(sql, listviewInfo, out totolrecord, out totalhours);
-            txtInfo.Text = "发现" + p.LoginID.Name + "的加班记录" + totolrecord + "条,共计:" + totalhours + "小时";
+            txtInfo.Text = "发现" + p.LoginID.Name + "的请假记录" + totolrecord + "条,共计:" + totalhours + "小时";
 
         }
 
         private void dtpStartTime_ValueChanged(object sender, EventArgs e)
         {
-            txtHours.Text = string.Format("{0:F}", TimeHelper.DateTimeDiff(dtpStartTime.Value, dtpEndTime.Value));
+            txtHours.Text = string.Format("{0:F}", TimeHelper.DateTimeDiff(dtpStartTime.Value, dtpEndTime.Value,TimeHelper.InfoType.LeaveTime ));
         }
 
         private void dtpEndTime_ValueChanged(object sender, EventArgs e)
         {
-            txtHours.Text = string.Format("{0:F}", TimeHelper.DateTimeDiff(dtpStartTime.Value, dtpEndTime.Value));
+            txtHours.Text = string.Format("{0:F}", TimeHelper.DateTimeDiff(dtpStartTime.Value, dtpEndTime.Value, TimeHelper.InfoType.LeaveTime));
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)
@@ -75,7 +75,7 @@ namespace HA_OA
                 return;
             }
 
-            string sql = "Insert into ha_otinfo () values('" + p.LoginID.Department + "','" + p.LoginID.Name + "','" + dtpStartTime.Value.Date + "','" +
+            string sql = "Insert into ha_leaveinfo () values('" + p.LoginID.Department + "','" + p.LoginID.Name + "','" + dtpStartTime.Value.Date + "','" +
                 dtpStartTime.Value + "','" + dtpEndTime.Value + "'," + Convert.ToDouble(txtHours.Text) + ",'" + DateTime.Now + "','" + @txtReason.Text.Trim() + "')";
             string ex = string.Empty;
             if (p.InsertDate2Database(p.ConnStr, sql, out ex))
@@ -84,11 +84,11 @@ namespace HA_OA
                 txtHours.Text = string.Empty;
                 txtReason.SelectAll();
                 txtReason.Focus();
-                sql = "select * from ha_otinfo ";
+                sql = "select * from ha_leaveinfo ";
                 int totolrecord = 0;
                 double totalhours = 0.0;
                frmOverTime. LoadInfo2Listview(sql, listviewInfo, out totolrecord, out totalhours);
-                txtInfo.Text = "发现" + p.LoginID.Name + "的加班记录" + totolrecord + "条,共计:" + totalhours + "小时";
+                txtInfo.Text = "发现" + p.LoginID.Name + "的请假记录" + totolrecord + "条,共计:" + totalhours + "小时";
             }
 
             else
@@ -103,11 +103,16 @@ namespace HA_OA
 
         private void btnQuery_Click(object sender, EventArgs e)
         {
-            string sql = "select * from ha_otinfo where date >'" + dtpStartDate.Value.Date + "' and date <'" + dtpEndDate.Value.Date + "'";
+            string sql = "select * from ha_leaveinfo where date >'" + dtpStartDate.Value.Date + "' and date <'" + dtpEndDate.Value.Date + "'";
             int totolrecord = 0;
             double totalhours = 0.0;
            frmOverTime. LoadInfo2Listview(sql, listviewInfo, out totolrecord, out totalhours);
-            txtInfo.Text = "发现" + p.LoginID.Name + "的加班记录" + totolrecord + "条,共计:" + totalhours + "小时";
+            txtInfo.Text = "发现" + p.LoginID.Name + "的请假记录" + totolrecord + "条,共计:" + totalhours + "小时";
+        }
+
+        private void txtReason_DoubleClick(object sender, EventArgs e)
+        {
+            txtReason.SelectAll();
         }
     }
 }

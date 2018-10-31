@@ -251,5 +251,10 @@ namespace HA_OA
             txtReason.Text = string.Empty;
         }
 
+        private void txtReason_DoubleClick(object sender, EventArgs e)
+        {
+            txtReason.SelectAll();
+        }
+
     }
 }

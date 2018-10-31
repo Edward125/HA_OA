@@ -117,6 +117,7 @@
             this.txtReason.Name = "txtReason";
             this.txtReason.Size = new System.Drawing.Size(668, 21);
             this.txtReason.TabIndex = 7;
+            this.txtReason.DoubleClick += new System.EventHandler(this.txtReason_DoubleClick);
             // 
             // label3
             // 

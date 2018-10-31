@@ -161,8 +161,13 @@ namespace HA_OA
 
                 if (infotype == InfoType.LeaveTime)
                 {
-
-
+                    TimeSpan tt = DateTime2.Date - DateTime1.Date;
+                    if ((DateTime1.TimeOfDay < new TimeSpan(12, 00, 00)) && (DateTime2.TimeOfDay > new TimeSpan(13, 00, 00)))
+                        dateDiff = ts.TotalHours - 1; //扣除吃饭时间
+                    else
+                        dateDiff = ts.TotalHours;
+                    if (tt.Days > 0)
+                        dateDiff = dateDiff - (16 * tt.Days);
                 }
 
 
