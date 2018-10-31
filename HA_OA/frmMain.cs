@@ -73,9 +73,12 @@ namespace HA_OA
         {
             panel1.Controls.Clear();
 
+            double totalot = 0.0;
+            double totalleave = 0.0;
             string sql = "select sum(hours) from ha_otinfo";
-
-            MessageBox.Show(p.querySum(p.ConnStr, sql).ToString());
+            totalot = p.querySum(p.ConnStr, sql);
+            sql = "select sum(hours) from ha_leaveinfo";
+            totalleave = p.querySum(p.ConnStr, sql);
 
 
          
@@ -88,7 +91,6 @@ namespace HA_OA
         {
 
             Graphics g = e.Graphics; //创建画板,这里的画板是由Form提供的. 
-
             g.Clear(this.BackColor);
 
             ////ate
@@ -112,6 +114,40 @@ namespace HA_OA
             //brush = new SolidBrush(Color.Black);
             //g.DrawString("ATE Overall Yield Rate", font, brush, 150F, 100F);
             //g.DrawString("FT Overall Yield Rate", font, brush, 500F, 100F);
+        }
+
+
+        private void gDrawInfo(PaintEventArgs e, double totalot, double totalleave)
+        {
+
+            Graphics g = e.Graphics; //创建画板,这里的画板是由Form提供的. 
+            g.Clear(this.BackColor);
+            Pen p = new Pen(Color.Blue, 25);//定义了一个蓝色,宽度为的画笔    
+            g.DrawEllipse(p, 100, 150, 260, 260);//在画板上画椭圆,起始坐标为(10,10),外接矩形的宽为,高为
+            System.Drawing.Font font = new System.Drawing.Font("Agency FB", 50F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            SolidBrush brush = new SolidBrush(Color.Blue);
+            g.DrawString(string.Format("{0:F}", totalot), font, brush, 135F, 240F);
+
+
+
+
+            //
+            font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            brush = new SolidBrush(Color.Black);
+            g.DrawString("Total Over Time", font, brush, 150F, 100F);
+            g.DrawString("Total Leave Time", font, brush, 500F, 100F);
+
+        }
+
+        private void frmMain_Paint(object sender, PaintEventArgs e)
+        {
+         
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            gDrawInfo(e, 39, 26.5);
+
         }
 
 

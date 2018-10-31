@@ -41,6 +41,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(970, 461);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnAllInfo
             // 
@@ -85,6 +86,7 @@
             this.Name = "frmMain";
             this.Text = "frmMain";
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmMain_Paint);
             this.ResumeLayout(false);
 
         }
