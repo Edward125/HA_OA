@@ -21,6 +21,8 @@ namespace HA_OA
             LoadUI();
         }
 
+
+        
         /// <summary>
         /// 
         /// </summary>
@@ -113,6 +115,7 @@ namespace HA_OA
         private void txtReason_DoubleClick(object sender, EventArgs e)
         {
             txtReason.SelectAll();
+           
         }
     }
 }

@@ -47,7 +47,7 @@ namespace HA_OA
             public int Permission { set; get; }
         }
 
-        
+
 
 
 
@@ -81,12 +81,12 @@ namespace HA_OA
             IPAddress[] addressList = Dns.GetHostAddresses(hostname);
             foreach (IPAddress ip in addressList)
             {
-                if (iptype  == IPType.IPV4) 
+                if (iptype == IPType.IPV4)
                 {
                     if (ip.ToString().Contains("."))
                         iplist.Add(ip.ToString());
                 }
-                if (iptype == IPType.IPV6 )
+                if (iptype == IPType.IPV6)
                 {
                     if (!ip.ToString().Contains("."))
                         iplist.Add(ip.ToString());
@@ -112,7 +112,7 @@ namespace HA_OA
         /// <param name="querykey"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        public static bool  QueryDatabase(string connstr, string sql, string querykey,out List<string> result)
+        public static bool QueryDatabase(string connstr, string sql, string querykey, out List<string> result)
         {
             result = new List<string>();
             MySqlConnection conn = new MySqlConnection(connstr);
@@ -124,13 +124,13 @@ namespace HA_OA
                 if (re.HasRows)
                 {
                     while (re.Read())
-                      result.Add(re[querykey].ToString());
+                        result.Add(re[querykey].ToString());
                 }
 
             }
-            catch (Exception )
+            catch (Exception)
             {
-              //  MessageBox.Show(ex.Message);
+                //  MessageBox.Show(ex.Message);
                 return false;
             }
             finally
@@ -139,7 +139,7 @@ namespace HA_OA
             }
 
             return true;
-       }
+        }
 
 
         /// <summary>
@@ -193,7 +193,7 @@ namespace HA_OA
         /// <param name="userid"></param>
         /// <param name="loginid"></param>
         /// <returns></returns>
-        public  static bool LoadUserInfo(string connstr, string sql,string userid, out LoginIDInfo loginid)
+        public static bool LoadUserInfo(string connstr, string sql, string userid, out LoginIDInfo loginid)
         {
             loginid = new LoginIDInfo();
             loginid.Name = userid;
@@ -233,12 +233,12 @@ namespace HA_OA
 
 
         /// <summary>
-        /// 
+        /// 插入数据到数据库
         /// </summary>
         /// <param name="connstr"></param>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public static bool InsertDate2Database(string connstr, string sql, out string  ex)
+        public static bool InsertDate2Database(string connstr, string sql, out string ex)
         {
             ex = string.Empty;
             MySqlConnection conn = new MySqlConnection(connstr);
@@ -263,16 +263,72 @@ namespace HA_OA
             return true;
         }
 
+
+
+
+        /// <summary>
+        /// 查询记录条数
+        /// </summary>
+        /// <param name="connstr"></param>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public static int queryCount(string connstr, string sql)
+        {
+
+            MySqlConnection conn = new MySqlConnection(connstr);
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            var i = cmd.ExecuteScalar();
+            conn.Close();
+            try
+            {
+                return Convert.ToInt16(i);
+            }
+            catch (Exception )
+            {
+                return 0;
+            }
+
+
+
+
+
+        }
+
+        /// <summary>
+        /// 查询总和数
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public static double querySum(string connstr, string sql)
+        {
+
+            MySqlConnection conn = new MySqlConnection(connstr);
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            var i = cmd.ExecuteScalar();
+            conn.Close();
+            try
+            {
+                return Convert.ToDouble(i);
+            }
+            catch (Exception )
+            {
+                return 0.0;
+            }
+
         #endregion
 
 
 
-        
 
+
+        }
     }
+}
 
     
 
 
 
-}
+

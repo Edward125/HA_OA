@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAllInfo = new System.Windows.Forms.Button();
             this.btnOTInfo = new System.Windows.Forms.Button();
             this.btmLeaveInfo = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -42,14 +42,15 @@
             this.panel1.Size = new System.Drawing.Size(970, 461);
             this.panel1.TabIndex = 0;
             // 
-            // button1
+            // btnAllInfo
             // 
-            this.button1.Location = new System.Drawing.Point(56, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 47);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "信息汇总";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAllInfo.Location = new System.Drawing.Point(56, 12);
+            this.btnAllInfo.Name = "btnAllInfo";
+            this.btnAllInfo.Size = new System.Drawing.Size(95, 47);
+            this.btnAllInfo.TabIndex = 1;
+            this.btnAllInfo.Text = "信息汇总";
+            this.btnAllInfo.UseVisualStyleBackColor = true;
+            this.btnAllInfo.Click += new System.EventHandler(this.btnAllInfo_Click);
             // 
             // btnOTInfo
             // 
@@ -79,7 +80,7 @@
             this.ClientSize = new System.Drawing.Size(970, 526);
             this.Controls.Add(this.btmLeaveInfo);
             this.Controls.Add(this.btnOTInfo);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAllInfo);
             this.Controls.Add(this.panel1);
             this.Name = "frmMain";
             this.Text = "frmMain";
@@ -91,7 +92,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAllInfo;
         private System.Windows.Forms.Button btnOTInfo;
         private System.Windows.Forms.Button btmLeaveInfo;
     }
