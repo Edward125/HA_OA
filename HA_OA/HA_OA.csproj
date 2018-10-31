@@ -48,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DES.cs" />
+    <Compile Include="frmLeaveInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLeaveInfo.Designer.cs">
+      <DependentUpon>frmLeaveInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeHelper.cs" />
+    <EmbeddedResource Include="frmLeaveInfo.resx">
+      <DependentUpon>frmLeaveInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>

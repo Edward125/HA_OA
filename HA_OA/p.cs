@@ -230,7 +230,44 @@ namespace HA_OA
         }
 
 
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connstr"></param>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public static bool InsertDate2Database(string connstr, string sql, out string  ex)
+        {
+            ex = string.Empty;
+            MySqlConnection conn = new MySqlConnection(connstr);
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();//执行 
+            }
+            catch (Exception e)
+            {
+                ex = e.Message;
+
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+
+            return true;
+        }
+
         #endregion
+
+
+
+        
 
     }
 
