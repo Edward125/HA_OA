@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Windows.Forms;
 namespace HA_OA
 {
     public  class TimeHelper
@@ -118,23 +118,12 @@ namespace HA_OA
                 //TimeSpan ts2 = new TimeSpan(DateTime2.Ticks);
                 //TimeSpan ts = ts1.Subtract(ts2).Duration();
                 TimeSpan ts = DateTime2 - DateTime1;
-                dateDiff = ts.TotalHours;
-                
-                //if (ts.Days >= 1)
-                //{
-                //    dateDiff = DateTime1.Month.ToString() + "月" + DateTime1.Day.ToString() + "日";
-                //}
-                //else
-                //{
-                //    if (ts.Hours > 1)
-                //    {
-                //        dateDiff = ts.Hours.ToString() + "小时前";
-                //    }
-                //    else
-                //    {
-                //        dateDiff = ts.Minutes.ToString() + "分钟前";
-                //    }
-                //}
+
+                if ((DateTime1.TimeOfDay < new TimeSpan(12, 00, 00)) && (DateTime2.TimeOfDay > new TimeSpan (13,00,00)))
+                    dateDiff = ts.TotalHours -1; //扣除吃饭时间
+                else
+                    dateDiff = ts.TotalHours;
+
             }
             catch
             { }

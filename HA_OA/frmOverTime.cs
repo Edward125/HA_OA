@@ -58,6 +58,13 @@ namespace HA_OA
                 return;
             }
 
+            if (string.IsNullOrEmpty (txtReason.Text.Trim ()))
+            {
+                MessageBox.Show("事由为空,请重新输入.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtReason.SelectAll();
+                txtReason.Focus();
+                return;
+            }
 
 
 
