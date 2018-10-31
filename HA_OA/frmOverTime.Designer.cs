@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtHours = new System.Windows.Forms.TextBox();
             this.btnReset = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtReason = new System.Windows.Forms.TextBox();
@@ -42,13 +44,11 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtInfo = new System.Windows.Forms.TextBox();
             this.btnQuery = new System.Windows.Forms.Button();
-            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
+            this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.listviewInfo = new System.Windows.Forms.ListView();
-            this.txtHours = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -69,10 +69,28 @@
             this.groupBox1.Controls.Add(this.btnAddNew);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(848, 90);
+            this.groupBox1.Size = new System.Drawing.Size(936, 90);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "新增加班";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(611, 25);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(29, 12);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "时数";
+            // 
+            // txtHours
+            // 
+            this.txtHours.Location = new System.Drawing.Point(646, 20);
+            this.txtHours.Name = "txtHours";
+            this.txtHours.ReadOnly = true;
+            this.txtHours.Size = new System.Drawing.Size(62, 21);
+            this.txtHours.TabIndex = 10;
+            this.txtHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnReset
             // 
@@ -82,6 +100,7 @@
             this.btnReset.TabIndex = 9;
             this.btnReset.Text = "重置";
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // label4
             // 
@@ -169,46 +188,50 @@
             // 
             this.groupBox2.Controls.Add(this.txtInfo);
             this.groupBox2.Controls.Add(this.btnQuery);
-            this.groupBox2.Controls.Add(this.dateTimePicker4);
+            this.groupBox2.Controls.Add(this.dtpEndDate);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.dateTimePicker3);
+            this.groupBox2.Controls.Add(this.dtpStartDate);
             this.groupBox2.Controls.Add(this.listviewInfo);
             this.groupBox2.Location = new System.Drawing.Point(12, 108);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(848, 341);
+            this.groupBox2.Size = new System.Drawing.Size(936, 341);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "加班信息";
             // 
             // txtInfo
             // 
-            this.txtInfo.Location = new System.Drawing.Point(503, 20);
+            this.txtInfo.Location = new System.Drawing.Point(503, 17);
             this.txtInfo.Name = "txtInfo";
-            this.txtInfo.Size = new System.Drawing.Size(337, 21);
+            this.txtInfo.ReadOnly = true;
+            this.txtInfo.Size = new System.Drawing.Size(427, 21);
             this.txtInfo.TabIndex = 13;
+            this.txtInfo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(417, 17);
+            this.btnQuery.Location = new System.Drawing.Point(417, 13);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(63, 31);
             this.btnQuery.TabIndex = 10;
             this.btnQuery.Text = "查询";
             this.btnQuery.UseVisualStyleBackColor = true;
+            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
-            // dateTimePicker4
+            // dtpEndDate
             // 
-            this.dateTimePicker4.CustomFormat = "yyyy-MM-dd";
-            this.dateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker4.Location = new System.Drawing.Point(282, 22);
-            this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(117, 21);
-            this.dateTimePicker4.TabIndex = 12;
+            this.dtpEndDate.CustomFormat = "yyyy-MM-dd";
+            this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpEndDate.Location = new System.Drawing.Point(282, 19);
+            this.dtpEndDate.Name = "dtpEndDate";
+            this.dtpEndDate.Size = new System.Drawing.Size(117, 21);
+            this.dtpEndDate.TabIndex = 12;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(223, 26);
+            this.label6.Location = new System.Drawing.Point(223, 24);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 11;
@@ -223,46 +246,28 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "开始日期";
             // 
-            // dateTimePicker3
+            // dtpStartDate
             // 
-            this.dateTimePicker3.CustomFormat = "yyyy-MM-dd";
-            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker3.Location = new System.Drawing.Point(75, 20);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(117, 21);
-            this.dateTimePicker3.TabIndex = 10;
+            this.dtpStartDate.CustomFormat = "yyyy-MM-dd";
+            this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpStartDate.Location = new System.Drawing.Point(75, 19);
+            this.dtpStartDate.Name = "dtpStartDate";
+            this.dtpStartDate.Size = new System.Drawing.Size(117, 21);
+            this.dtpStartDate.TabIndex = 10;
             // 
             // listviewInfo
             // 
-            this.listviewInfo.Location = new System.Drawing.Point(6, 58);
+            this.listviewInfo.Location = new System.Drawing.Point(6, 47);
             this.listviewInfo.Name = "listviewInfo";
-            this.listviewInfo.Size = new System.Drawing.Size(836, 277);
+            this.listviewInfo.Size = new System.Drawing.Size(924, 288);
             this.listviewInfo.TabIndex = 0;
             this.listviewInfo.UseCompatibleStateImageBehavior = false;
-            // 
-            // txtHours
-            // 
-            this.txtHours.Location = new System.Drawing.Point(646, 20);
-            this.txtHours.Name = "txtHours";
-            this.txtHours.ReadOnly = true;
-            this.txtHours.Size = new System.Drawing.Size(62, 21);
-            this.txtHours.TabIndex = 10;
-            this.txtHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(611, 25);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(29, 12);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "时数";
             // 
             // frmOverTime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(868, 461);
+            this.ClientSize = new System.Drawing.Size(964, 461);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmOverTime";
@@ -291,10 +296,10 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListView listviewInfo;
         private System.Windows.Forms.Button btnQuery;
-        private System.Windows.Forms.DateTimePicker dateTimePicker4;
+        private System.Windows.Forms.DateTimePicker dtpEndDate;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.DateTimePicker dtpStartDate;
         private System.Windows.Forms.TextBox txtInfo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtHours;

@@ -32,14 +32,14 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.btnOTInfo = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btmLeaveInfo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 65);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(910, 500);
+            this.panel1.Size = new System.Drawing.Size(970, 461);
             this.panel1.TabIndex = 0;
             // 
             // button1
@@ -61,22 +61,23 @@
             this.btnOTInfo.UseVisualStyleBackColor = true;
             this.btnOTInfo.Click += new System.EventHandler(this.btnOTInfo_Click);
             // 
-            // button3
+            // btmLeaveInfo
             // 
-            this.button3.Location = new System.Drawing.Point(346, 12);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(95, 47);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "请假信息";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btmLeaveInfo.Location = new System.Drawing.Point(346, 12);
+            this.btmLeaveInfo.Name = "btmLeaveInfo";
+            this.btmLeaveInfo.Size = new System.Drawing.Size(95, 47);
+            this.btmLeaveInfo.TabIndex = 3;
+            this.btmLeaveInfo.Text = "请假信息";
+            this.btmLeaveInfo.UseVisualStyleBackColor = true;
+            this.btmLeaveInfo.Click += new System.EventHandler(this.btmLeaveInfo_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(909, 564);
-            this.Controls.Add(this.button3);
+            this.ClientSize = new System.Drawing.Size(970, 526);
+            this.Controls.Add(this.btmLeaveInfo);
             this.Controls.Add(this.btnOTInfo);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
@@ -92,6 +93,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnOTInfo;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btmLeaveInfo;
     }
 }

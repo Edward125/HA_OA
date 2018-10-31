@@ -7,6 +7,11 @@ namespace HA_OA
 {
     public  class TimeHelper
     {
+        public enum InfoType
+        {
+            OverTime,
+            LeaveTime
+        }
 
         /// <summary>
         /// 将时间格式化成 年月日 的形式,如果时间为null，返回当前系统时间
@@ -118,11 +123,50 @@ namespace HA_OA
                 //TimeSpan ts2 = new TimeSpan(DateTime2.Ticks);
                 //TimeSpan ts = ts1.Subtract(ts2).Duration();
                 TimeSpan ts = DateTime2 - DateTime1;
-
                 if ((DateTime1.TimeOfDay < new TimeSpan(12, 00, 00)) && (DateTime2.TimeOfDay > new TimeSpan (13,00,00)))
                     dateDiff = ts.TotalHours -1; //扣除吃饭时间
                 else
                     dateDiff = ts.TotalHours;
+
+            }
+            catch
+            { }
+            return dateDiff;
+        }
+
+
+
+        /// <summary>
+        /// 返回两个时间的时间差，返回小时数
+        /// </summary>
+        /// <param name="DateTime1">datetime1</param>
+        /// <param name="DateTime2">datetime2</param>
+        /// <returns>返回字符串</returns>
+        public static double DateTimeDiff(DateTime DateTime1, DateTime DateTime2,InfoType infotype)
+        {
+            double dateDiff = 0.0;
+            try
+            {
+                //TimeSpan ts1 = new TimeSpan(DateTime1.Ticks);
+                //TimeSpan ts2 = new TimeSpan(DateTime2.Ticks);
+                //TimeSpan ts = ts1.Subtract(ts2).Duration();
+                TimeSpan ts = DateTime2 - DateTime1;
+                if (infotype == InfoType.OverTime)
+                {
+                    if ((DateTime1.TimeOfDay < new TimeSpan(12, 00, 00)) && (DateTime2.TimeOfDay > new TimeSpan(13, 00, 00)))
+                        dateDiff = ts.TotalHours - 1; //扣除吃饭时间
+                    else
+                        dateDiff = ts.TotalHours;
+                }
+
+                if (infotype == InfoType.LeaveTime)
+                {
+
+
+                }
+
+
+
 
             }
             catch

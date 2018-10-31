@@ -13,20 +13,19 @@ namespace HA_OA
     {
 
         frmOverTime OT;
+        frmLeaveInfo Leave;
         public frmMain()
         {
             InitializeComponent();
         }
 
+
+
+
         private void btnOTInfo_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear();
-            //     this.panel1.Controls.Clear();  // 清空原有的控件
-            //w1.TopLevel = false;  // 非顶级窗口
-            //w1.FormBorderStyle = FormBorderStyle.None;  // 不显示标题栏
-            //w1.Dock = System.Windows.Forms.DockStyle.Fill;  // 填充panel
-            //this.panel1.Controls.Add(w1);  // 添加w1窗体
-            //w1.Show()
+            OT = new frmOverTime();
             OT.TopLevel = false;
             OT.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             OT.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -37,8 +36,21 @@ namespace HA_OA
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            OT = new frmOverTime();
+           // OT = new frmOverTime();
         }
+
+        private void btmLeaveInfo_Click(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear();
+            Leave = new frmLeaveInfo();
+            Leave.TopLevel = false;
+            Leave.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Leave.Dock = System.Windows.Forms.DockStyle.Fill;
+            panel1.Controls.Add(Leave );
+            Leave.Show();
+        }
+
+
 
     }
 }
