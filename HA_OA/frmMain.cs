@@ -23,7 +23,14 @@ namespace HA_OA
         //导入判断网络是否连接的 .dll  
         [DllImport("wininet.dll", EntryPoint = "InternetGetConnectedState")]
         //判断网络状况的方法,返回值true为连接，false为未连接  
+
+
         public extern static bool InternetGetConnectedState(out int conState, int reder);
+
+
+
+        double totalot = 0.0;
+        double totalleave = 0.0;
 
         #region 防止屏幕闪烁
         protected override CreateParams CreateParams
@@ -56,6 +63,14 @@ namespace HA_OA
         private void frmMain_Load(object sender, EventArgs e)
         {
            // OT = new frmOverTime();
+
+            this.Text = "加班请假管理系统(当前用户:" + p.LoginID.Name +") ,Ver:" + Application.ProductVersion;
+
+            string sql = "select sum(hours) from ha_otinfo";
+            totalot = p.querySum(p.ConnStr, sql);
+            sql = "select sum(hours) from ha_leaveinfo";
+            totalleave = p.querySum(p.ConnStr, sql);
+
         }
 
         private void btmLeaveInfo_Click(object sender, EventArgs e)
@@ -72,9 +87,6 @@ namespace HA_OA
         private void btnAllInfo_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear();
-
-            double totalot = 0.0;
-            double totalleave = 0.0;
             string sql = "select sum(hours) from ha_otinfo";
             totalot = p.querySum(p.ConnStr, sql);
             sql = "select sum(hours) from ha_leaveinfo";
@@ -107,7 +119,7 @@ namespace HA_OA
             g.DrawRectangle(p, 56, 86, 220, 250);
            
             System.Drawing.Font font = new System.Drawing.Font("Agency FB", 60F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            SolidBrush brush = new SolidBrush(Color.CadetBlue  );
+            SolidBrush brush = new SolidBrush(Color.Blue  );
             g.DrawString(string.Format("{0:F}", totalot), font, brush, 70F, 202F);
 
 
@@ -116,7 +128,7 @@ namespace HA_OA
              g.DrawRectangle(p, 361, 86, 220, 250);
             font = new System.Drawing.Font("Agency FB", 60F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
              brush = new SolidBrush(Color.LimeGreen );
-            g.DrawString(string.Format("{0:F}", totalot), font, brush, 376F, 202F);
+            g.DrawString(string.Format("{0:F}", totalleave ), font, brush, 376F, 202F);
 
 
             p = new Pen(Color.OrangeRed , 1);//定义了一个蓝色,宽度为的画笔    
@@ -124,7 +136,7 @@ namespace HA_OA
             g.DrawRectangle(p, 666, 86, 220, 250);
             font = new System.Drawing.Font("Agency FB", 60F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             brush = new SolidBrush(Color.Red);
-            g.DrawString(string.Format("{0:F}", totalot), font, brush, 380F, 202F);
+            g.DrawString(string.Format("{0:F}", (totalot-totalleave )), font, brush, 681F, 202F);
 
             //
             font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -142,8 +154,40 @@ namespace HA_OA
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            gDrawInfo(e, 39, 26.5);
+            gDrawInfo(e, totalot , totalleave );
 
+        }
+
+        private void picAllInfo_Click(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear();
+            string sql = "select sum(hours) from ha_otinfo";
+            totalot = p.querySum(p.ConnStr, sql);
+            sql = "select sum(hours) from ha_leaveinfo";
+            totalleave = p.querySum(p.ConnStr, sql);
+        }
+
+        private void picOTInfo_Click(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear();
+            OT = new frmOverTime();
+            OT.TopLevel = false;
+            OT.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            OT.Dock = System.Windows.Forms.DockStyle.Fill;
+            panel1.Controls.Add(OT);
+            OT.Show();
+
+        }
+
+        private void picLeaveInfo_Click(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear();
+            LeaveI = new frmLeaveInfo();
+            LeaveI.TopLevel = false;
+            LeaveI.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            LeaveI.Dock = System.Windows.Forms.DockStyle.Fill;
+            panel1.Controls.Add(LeaveI);
+            LeaveI.Show();
         }
 
 
