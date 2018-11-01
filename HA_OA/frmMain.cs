@@ -66,9 +66,9 @@ namespace HA_OA
 
             this.Text = "加班请假管理系统(当前用户:" + p.LoginID.Name +") ,Ver:" + Application.ProductVersion;
 
-            string sql = "select sum(hours) from ha_otinfo";
+            string sql = "select sum(hours) from ha_otinfo where username ='" +p.LoginID.Name +"'";
             totalot = p.querySum(p.ConnStr, sql);
-            sql = "select sum(hours) from ha_leaveinfo";
+            sql = "select sum(hours) from ha_leaveinfo where username ='" + p.LoginID.Name + "'";
             totalleave = p.querySum(p.ConnStr, sql);
 
         }
@@ -87,9 +87,9 @@ namespace HA_OA
         private void btnAllInfo_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear();
-            string sql = "select sum(hours) from ha_otinfo";
+            string sql =  "select sum(hours) from ha_otinfo where username ='" +p.LoginID.Name +"'";
             totalot = p.querySum(p.ConnStr, sql);
-            sql = "select sum(hours) from ha_leaveinfo";
+            sql = "select sum(hours) from ha_leaveinfo where username ='" + p.LoginID.Name + "'";
             totalleave = p.querySum(p.ConnStr, sql);
 
 
@@ -161,9 +161,9 @@ namespace HA_OA
         private void picAllInfo_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear();
-            string sql = "select sum(hours) from ha_otinfo";
+            string sql = "select sum(hours) from ha_otinfo where username ='" + p.LoginID.Name + "'";
             totalot = p.querySum(p.ConnStr, sql);
-            sql = "select sum(hours) from ha_leaveinfo";
+            sql = "select sum(hours) from ha_leaveinfo where username ='" + p.LoginID.Name + "'";
             totalleave = p.querySum(p.ConnStr, sql);
         }
 
@@ -188,6 +188,17 @@ namespace HA_OA
             LeaveI.Dock = System.Windows.Forms.DockStyle.Fill;
             panel1.Controls.Add(LeaveI);
             LeaveI.Show();
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("是否确认退出软件,退出点击是(Y),不退出点击否(N)?", "Exit?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                Environment.Exit(0);
+            }
+            else
+                e.Cancel = true;
         }
 
 

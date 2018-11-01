@@ -48,10 +48,10 @@ namespace HA_OA
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty (txtPassword.Text.Trim ()))
+            if (!string.IsNullOrEmpty(txtPassword.Text.Trim()))
             {
 
-                if (DES.DesEncrypt(txtPassword.Text.Trim(), p.dKey) == p.LoginID.Password )
+                if (DES.DesEncrypt(txtPassword.Text.Trim(), p.dKey) == p.LoginID.Password)
                 {
                     frmMain f = new frmMain();
                     f.Show();
@@ -64,6 +64,8 @@ namespace HA_OA
                     txtPassword.Focus();
                 }
             }
+            else
+                txtPassword.Focus();
         }
 
         private void comboUser_SelectedIndexChanged(object sender, EventArgs e)
@@ -105,7 +107,20 @@ namespace HA_OA
                         txtPassword.Focus();
                     }
                 }
+                else
+                    txtPassword.Focus();
             }
+        }
+
+        private void btnRegist_Click(object sender, EventArgs e)
+        {
+            Form f = new frmAddUser();
+           DialogResult result= f.ShowDialog();
+           if (result == DialogResult.OK) 
+           {
+               MessageBox.Show("OK");
+           }
+
         }
 
 

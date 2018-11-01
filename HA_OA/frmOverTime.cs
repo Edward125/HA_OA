@@ -33,7 +33,7 @@ namespace HA_OA
            
 
             SetListView(listviewInfo);
-            string sql = "select * from ha_otinfo ";
+            string sql = "select * from ha_otinfo where username ='" + p.LoginID.Name + "'";
             int totolrecord = 0;
             double totalhours = 0.0;
             LoadInfo2Listview(sql, listviewInfo, out totolrecord, out totalhours);
@@ -91,7 +91,7 @@ namespace HA_OA
                 txtHours.Text = string.Empty;
                 txtReason.SelectAll();
                 txtReason.Focus();
-                sql = "select * from ha_otinfo ";
+                sql = "select * from ha_otinfo where username ='" + p.LoginID.Name + "'";
                 int totolrecord = 0;
                 double totalhours = 0.0;
                 LoadInfo2Listview(sql, listviewInfo, out totolrecord, out totalhours);
@@ -238,7 +238,7 @@ namespace HA_OA
 
         private void btnQuery_Click(object sender, EventArgs e)
         {
-            string sql = "select * from ha_otinfo where date >'" + dtpStartDate.Value.Date + "' and date <'" + dtpEndDate.Value.Date + "'";
+            string sql = "select * from ha_otinfo where date >'" + dtpStartDate.Value.Date + "' and date <'" + dtpEndDate.Value.Date + "' and username ='" + p.LoginID.Name + "'";
             int totolrecord = 0;
             double totalhours = 0.0;
             LoadInfo2Listview(sql, listviewInfo, out totolrecord, out totalhours);

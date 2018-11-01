@@ -36,12 +36,14 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnRegist = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.btnRegist);
             this.groupBox1.Controls.Add(this.btnExit);
             this.groupBox1.Controls.Add(this.btnLogin);
             this.groupBox1.Controls.Add(this.comboUser);
@@ -58,7 +60,7 @@
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.SystemColors.Control;
-            this.btnExit.Location = new System.Drawing.Point(151, 93);
+            this.btnExit.Location = new System.Drawing.Point(106, 93);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 36);
             this.btnExit.TabIndex = 7;
@@ -69,7 +71,7 @@
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.SystemColors.Control;
-            this.btnLogin.Location = new System.Drawing.Point(61, 93);
+            this.btnLogin.Location = new System.Drawing.Point(12, 93);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 36);
             this.btnLogin.TabIndex = 6;
@@ -115,6 +117,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "登陆账号";
             // 
+            // btnRegist
+            // 
+            this.btnRegist.BackColor = System.Drawing.SystemColors.Control;
+            this.btnRegist.Location = new System.Drawing.Point(201, 93);
+            this.btnRegist.Name = "btnRegist";
+            this.btnRegist.Size = new System.Drawing.Size(75, 36);
+            this.btnRegist.TabIndex = 8;
+            this.btnRegist.Text = "注册";
+            this.btnRegist.UseVisualStyleBackColor = false;
+            this.btnRegist.Click += new System.EventHandler(this.btnRegist_Click);
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -144,6 +157,7 @@
         private System.Windows.Forms.ComboBox comboUser;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnRegist;
     }
 }
 
