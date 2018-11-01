@@ -37,6 +37,7 @@ namespace HA_OA
             string sql = "SELECT userid FROM ha_user";
             List<string> userid = new List<string>();
             p.QueryDatabase(p.ConnStr, sql, "userid", out userid);
+            comboUser.Items.Clear();
             if (userid.Count > 0)
             {
                 foreach (string  item in userid )
@@ -116,16 +117,22 @@ namespace HA_OA
         {
             Form f = new frmAddUser();
            DialogResult result= f.ShowDialog();
-           if (result == DialogResult.OK) 
+
+           if (f.DialogResult == System.Windows.Forms.DialogResult.Cancel )
            {
-               MessageBox.Show("OK");
+               string sql = "SELECT userid FROM ha_user";
+               List<string> userid = new List<string>();
+               comboUser.Items.Clear();
+               p.QueryDatabase(p.ConnStr, sql, "userid", out userid);
+               if (userid.Count > 0)
+               {
+                   foreach (string item in userid)
+                   {
+                       comboUser.Items.Add(item);
+                   }
+               }
            }
-
         }
-
-
-
-
         
     }
 }

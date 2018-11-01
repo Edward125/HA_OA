@@ -97,7 +97,7 @@ namespace HA_OA
             {
                 MessageBox.Show("注册账号成功,现在可以使用'" + txtUserName.Text + "'进行登陆.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ResetUI();
-                this.Hide();
+                this.Close();
                 //Environment.Exit(0);
             }
 
