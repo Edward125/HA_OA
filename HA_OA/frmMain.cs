@@ -93,27 +93,7 @@ namespace HA_OA
             Graphics g = e.Graphics; //创建画板,这里的画板是由Form提供的. 
             g.Clear(this.BackColor);
 
-            ////ate
-            //Pen p = new Pen(Color.Blue, 25);//定义了一个蓝色,宽度为的画笔        
-            //g.DrawEllipse(p, 100, 150, 260, 260);//在画板上画椭圆,起始坐标为(10,10),外接矩形的宽为,高为
-            //p = new Pen(color, 1);
-            //g.DrawRectangle(p, 70, 120, 320, 320);
-            //System.Drawing.Font font = new System.Drawing.Font("Agency FB", 50F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //SolidBrush brush = new SolidBrush(color);
-            //g.DrawString(string.Format("{0:P}", ateyr), font, brush, 135F, 240F);
 
-            ////ft
-            //p = new Pen(color, 25);//定义了一个蓝色,宽度为的画笔   
-            //g.DrawEllipse(p, 450, 150, 260, 260);//在画板上画椭圆,起始坐标为(10,10),外接矩形的宽为,高为   
-            //p = new Pen(color, 1);
-            //g.DrawRectangle(p, 420, 120, 320, 320);
-            //brush = new SolidBrush(color);
-            //g.DrawString(string.Format("{0:P}", ftyr), font, brush, 485F, 240F);
-            ////
-            //font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //brush = new SolidBrush(Color.Black);
-            //g.DrawString("ATE Overall Yield Rate", font, brush, 150F, 100F);
-            //g.DrawString("FT Overall Yield Rate", font, brush, 500F, 100F);
         }
 
 
@@ -122,20 +102,36 @@ namespace HA_OA
 
             Graphics g = e.Graphics; //创建画板,这里的画板是由Form提供的. 
             g.Clear(this.BackColor);
-            Pen p = new Pen(Color.Blue, 25);//定义了一个蓝色,宽度为的画笔    
-            g.DrawEllipse(p, 100, 150, 260, 260);//在画板上画椭圆,起始坐标为(10,10),外接矩形的宽为,高为
-            System.Drawing.Font font = new System.Drawing.Font("Agency FB", 50F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            SolidBrush brush = new SolidBrush(Color.Blue);
-            g.DrawString(string.Format("{0:F}", totalot), font, brush, 135F, 240F);
+            Pen p = new Pen(Color.Blue  , 1);//定义了一个蓝色,宽度为的画笔    
+            //g.DrawEllipse(p, 40, 150, 250, 250);//在画板上画椭圆,起始坐标为(10,10),外接矩形的宽为,高为
+            g.DrawRectangle(p, 56, 86, 220, 250);
+           
+            System.Drawing.Font font = new System.Drawing.Font("Agency FB", 60F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            SolidBrush brush = new SolidBrush(Color.CadetBlue  );
+            g.DrawString(string.Format("{0:F}", totalot), font, brush, 70F, 202F);
 
 
+             p = new Pen(Color.LimeGreen , 1);//定义了一个蓝色,宽度为的画笔    
+            // g.DrawEllipse(p, 400, 86, 200, 250);//在画板上画椭圆,起始坐标为(10,10),外接矩形的宽为,高为
+             g.DrawRectangle(p, 361, 86, 220, 250);
+            font = new System.Drawing.Font("Agency FB", 60F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+             brush = new SolidBrush(Color.LimeGreen );
+            g.DrawString(string.Format("{0:F}", totalot), font, brush, 376F, 202F);
 
+
+            p = new Pen(Color.OrangeRed , 1);//定义了一个蓝色,宽度为的画笔    
+           // g.DrawEllipse(p, 700, 150, 250, 250);//在画板上画椭圆,起始坐标为(10,10),外接矩形的宽为,高为
+            g.DrawRectangle(p, 666, 86, 220, 250);
+            font = new System.Drawing.Font("Agency FB", 60F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            brush = new SolidBrush(Color.Red);
+            g.DrawString(string.Format("{0:F}", totalot), font, brush, 380F, 202F);
 
             //
-            font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             brush = new SolidBrush(Color.Black);
-            g.DrawString("Total Over Time", font, brush, 150F, 100F);
-            g.DrawString("Total Leave Time", font, brush, 500F, 100F);
+            g.DrawString("加班总时数", font, brush, 112F, 134F);
+            g.DrawString("请假总时数", font, brush, 417F, 134F);
+            g.DrawString("结余总时数", font, brush, 722F, 134F);
 
         }
 
