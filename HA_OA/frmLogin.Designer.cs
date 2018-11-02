@@ -30,13 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnRegist = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.comboUser = new System.Windows.Forms.ComboBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnRegist = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +56,17 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "登陆";
+            // 
+            // btnRegist
+            // 
+            this.btnRegist.BackColor = System.Drawing.SystemColors.Control;
+            this.btnRegist.Location = new System.Drawing.Point(201, 93);
+            this.btnRegist.Name = "btnRegist";
+            this.btnRegist.Size = new System.Drawing.Size(75, 36);
+            this.btnRegist.TabIndex = 8;
+            this.btnRegist.Text = "注册";
+            this.btnRegist.UseVisualStyleBackColor = false;
+            this.btnRegist.Click += new System.EventHandler(this.btnRegist_Click);
             // 
             // btnExit
             // 
@@ -117,17 +128,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "登陆账号";
             // 
-            // btnRegist
-            // 
-            this.btnRegist.BackColor = System.Drawing.SystemColors.Control;
-            this.btnRegist.Location = new System.Drawing.Point(201, 93);
-            this.btnRegist.Name = "btnRegist";
-            this.btnRegist.Size = new System.Drawing.Size(75, 36);
-            this.btnRegist.TabIndex = 8;
-            this.btnRegist.Text = "注册";
-            this.btnRegist.UseVisualStyleBackColor = false;
-            this.btnRegist.Click += new System.EventHandler(this.btnRegist_Click);
-            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -140,6 +140,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.frmLogin_Load);
             this.groupBox1.ResumeLayout(false);

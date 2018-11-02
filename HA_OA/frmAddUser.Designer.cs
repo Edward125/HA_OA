@@ -30,16 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddUser));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtUserName = new System.Windows.Forms.TextBox();
-            this.txtPassword1 = new System.Windows.Forms.TextBox();
-            this.txtPassword2 = new System.Windows.Forms.TextBox();
-            this.comboDep = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnOK = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboDep = new System.Windows.Forms.ComboBox();
+            this.txtPassword2 = new System.Windows.Forms.TextBox();
+            this.txtPassword1 = new System.Windows.Forms.TextBox();
+            this.txtUserName = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,76 +62,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "添加新用户";
             // 
-            // txtUserName
+            // btnReset
             // 
-            this.txtUserName.Location = new System.Drawing.Point(103, 93);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(143, 21);
-            this.txtUserName.TabIndex = 2;
-            this.txtUserName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtPassword1
-            // 
-            this.txtPassword1.Location = new System.Drawing.Point(103, 145);
-            this.txtPassword1.Name = "txtPassword1";
-            this.txtPassword1.PasswordChar = '*';
-            this.txtPassword1.Size = new System.Drawing.Size(143, 21);
-            this.txtPassword1.TabIndex = 3;
-            this.txtPassword1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtPassword2
-            // 
-            this.txtPassword2.Location = new System.Drawing.Point(103, 196);
-            this.txtPassword2.Name = "txtPassword2";
-            this.txtPassword2.PasswordChar = '*';
-            this.txtPassword2.Size = new System.Drawing.Size(143, 21);
-            this.txtPassword2.TabIndex = 4;
-            this.txtPassword2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // comboDep
-            // 
-            this.comboDep.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboDep.FormattingEnabled = true;
-            this.comboDep.Location = new System.Drawing.Point(103, 46);
-            this.comboDep.Name = "comboDep";
-            this.comboDep.Size = new System.Drawing.Size(143, 20);
-            this.comboDep.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "用户部门";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 96);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "用户姓名";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(32, 150);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 12);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "用户密码";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(32, 199);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 12);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "确认密码";
+            this.btnReset.Location = new System.Drawing.Point(171, 263);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 37);
+            this.btnReset.TabIndex = 6;
+            this.btnReset.Text = "重置";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnOK
             // 
@@ -143,15 +82,76 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // btnReset
+            // label4
             // 
-            this.btnReset.Location = new System.Drawing.Point(171, 263);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 37);
-            this.btnReset.TabIndex = 6;
-            this.btnReset.Text = "重置";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(32, 199);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 12);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "确认密码";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(32, 150);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "用户密码";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(32, 96);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "用户姓名";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(32, 49);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "用户部门";
+            // 
+            // comboDep
+            // 
+            this.comboDep.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboDep.FormattingEnabled = true;
+            this.comboDep.Location = new System.Drawing.Point(103, 46);
+            this.comboDep.Name = "comboDep";
+            this.comboDep.Size = new System.Drawing.Size(143, 20);
+            this.comboDep.TabIndex = 1;
+            // 
+            // txtPassword2
+            // 
+            this.txtPassword2.Location = new System.Drawing.Point(103, 196);
+            this.txtPassword2.Name = "txtPassword2";
+            this.txtPassword2.PasswordChar = '*';
+            this.txtPassword2.Size = new System.Drawing.Size(143, 21);
+            this.txtPassword2.TabIndex = 4;
+            this.txtPassword2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtPassword1
+            // 
+            this.txtPassword1.Location = new System.Drawing.Point(103, 145);
+            this.txtPassword1.Name = "txtPassword1";
+            this.txtPassword1.PasswordChar = '*';
+            this.txtPassword1.Size = new System.Drawing.Size(143, 21);
+            this.txtPassword1.TabIndex = 3;
+            this.txtPassword1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.Location = new System.Drawing.Point(103, 93);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(143, 21);
+            this.txtUserName.TabIndex = 2;
+            this.txtUserName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // frmAddUser
             // 
@@ -163,6 +163,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmAddUser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "添加新用户";
             this.Load += new System.EventHandler(this.frmAddUser_Load);
             this.groupBox1.ResumeLayout(false);

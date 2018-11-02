@@ -23,8 +23,6 @@ namespace HA_OA
         //导入判断网络是否连接的 .dll  
         [DllImport("wininet.dll", EntryPoint = "InternetGetConnectedState")]
         //判断网络状况的方法,返回值true为连接，false为未连接  
-
-
         public extern static bool InternetGetConnectedState(out int conState, int reder);
 
 
