@@ -35,7 +35,7 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnQuery = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnSN1 = new System.Windows.Forms.TextBox();
+            this.txtSN = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboModel = new System.Windows.Forms.ComboBox();
             this.comboHwInfo = new System.Windows.Forms.ComboBox();
@@ -74,7 +74,7 @@
             this.groupBox1.Controls.Add(this.comboHwInfo);
             this.groupBox1.Controls.Add(this.comboModel);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.btnSN1);
+            this.groupBox1.Controls.Add(this.txtSN);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnEdit);
             this.groupBox1.Controls.Add(this.btnNew);
@@ -116,6 +116,7 @@
             this.btnNew.TabIndex = 0;
             this.btnNew.Text = "新增";
             this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // btnEdit
             // 
@@ -144,12 +145,13 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "序列号";
             // 
-            // btnSN1
+            // txtSN
             // 
-            this.btnSN1.Location = new System.Drawing.Point(56, 19);
-            this.btnSN1.Name = "btnSN1";
-            this.btnSN1.Size = new System.Drawing.Size(100, 21);
-            this.btnSN1.TabIndex = 3;
+            this.txtSN.Location = new System.Drawing.Point(56, 19);
+            this.txtSN.Name = "txtSN";
+            this.txtSN.ReadOnly = true;
+            this.txtSN.Size = new System.Drawing.Size(100, 21);
+            this.txtSN.TabIndex = 3;
             // 
             // label2
             // 
@@ -162,24 +164,26 @@
             // 
             // comboModel
             // 
+            this.comboModel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboModel.FormattingEnabled = true;
             this.comboModel.Location = new System.Drawing.Point(204, 19);
             this.comboModel.Name = "comboModel";
-            this.comboModel.Size = new System.Drawing.Size(52, 20);
+            this.comboModel.Size = new System.Drawing.Size(60, 20);
             this.comboModel.TabIndex = 5;
             // 
             // comboHwInfo
             // 
+            this.comboHwInfo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboHwInfo.FormattingEnabled = true;
-            this.comboHwInfo.Location = new System.Drawing.Point(358, 19);
+            this.comboHwInfo.Location = new System.Drawing.Point(339, 19);
             this.comboHwInfo.Name = "comboHwInfo";
-            this.comboHwInfo.Size = new System.Drawing.Size(52, 20);
+            this.comboHwInfo.Size = new System.Drawing.Size(71, 20);
             this.comboHwInfo.TabIndex = 6;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(293, 22);
+            this.label3.Location = new System.Drawing.Point(280, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 7;
@@ -198,6 +202,7 @@
             // 
             this.txtLocation.Location = new System.Drawing.Point(476, 19);
             this.txtLocation.Name = "txtLocation";
+            this.txtLocation.ReadOnly = true;
             this.txtLocation.Size = new System.Drawing.Size(389, 21);
             this.txtLocation.TabIndex = 9;
             // 
@@ -205,6 +210,7 @@
             // 
             this.txtRemark.Location = new System.Drawing.Point(476, 47);
             this.txtRemark.Name = "txtRemark";
+            this.txtRemark.ReadOnly = true;
             this.txtRemark.Size = new System.Drawing.Size(388, 21);
             this.txtRemark.TabIndex = 10;
             // 
@@ -221,6 +227,7 @@
             // 
             this.txtIP.Location = new System.Drawing.Point(55, 49);
             this.txtIP.Name = "txtIP";
+            this.txtIP.ReadOnly = true;
             this.txtIP.Size = new System.Drawing.Size(100, 21);
             this.txtIP.TabIndex = 12;
             // 
@@ -228,6 +235,7 @@
             // 
             this.txtpwd.Location = new System.Drawing.Point(341, 49);
             this.txtpwd.Name = "txtpwd";
+            this.txtpwd.ReadOnly = true;
             this.txtpwd.Size = new System.Drawing.Size(69, 21);
             this.txtpwd.TabIndex = 13;
             // 
@@ -235,6 +243,7 @@
             // 
             this.txtID.Location = new System.Drawing.Point(203, 50);
             this.txtID.Name = "txtID";
+            this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(86, 21);
             this.txtID.TabIndex = 14;
             // 
@@ -307,6 +316,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "frmBodyList";
             this.Text = "frmBodyList";
+            this.Load += new System.EventHandler(this.frmBodyList_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -325,7 +335,7 @@
         private System.Windows.Forms.Button btnQuery;
         private System.Windows.Forms.ComboBox comboModel;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox btnSN1;
+        private System.Windows.Forms.TextBox txtSN;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboHwInfo;
         private System.Windows.Forms.Label label8;
