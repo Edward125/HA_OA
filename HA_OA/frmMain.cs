@@ -15,6 +15,7 @@ namespace HA_OA
 
         frmOverTime OT;
         frmLeaveInfo LeaveI;
+        frmBodyList BodyList;
         public frmMain()
         {
             InitializeComponent();
@@ -198,6 +199,20 @@ namespace HA_OA
             else
                 e.Cancel = true;
         }
+
+        private void picBodyList_Click(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear();
+            BodyList = new frmBodyList();
+            BodyList.TopLevel = false;
+            BodyList.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            BodyList.Dock = System.Windows.Forms.DockStyle.Fill;
+            panel1.Controls.Add(BodyList);
+            BodyList.Show();
+
+        }
+
+
 
 
     }

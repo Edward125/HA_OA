@@ -39,9 +39,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.picAllInfo = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.picBodyList = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picOTInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLeaveInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAllInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBodyList)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -148,12 +151,36 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "信息汇总";
             // 
+            // picBodyList
+            // 
+            this.picBodyList.BackColor = System.Drawing.Color.Transparent;
+            this.picBodyList.Image = ((System.Drawing.Image)(resources.GetObject("picBodyList.Image")));
+            this.picBodyList.Location = new System.Drawing.Point(516, 12);
+            this.picBodyList.Name = "picBodyList";
+            this.picBodyList.Size = new System.Drawing.Size(81, 75);
+            this.picBodyList.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBodyList.TabIndex = 10;
+            this.picBodyList.TabStop = false;
+            this.picBodyList.Click += new System.EventHandler(this.picBodyList_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(523, 94);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 12);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "执法仪清单";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(969, 576);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.picBodyList);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.picAllInfo);
             this.Controls.Add(this.label2);
@@ -176,6 +203,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picOTInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLeaveInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAllInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBodyList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -193,5 +221,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox picAllInfo;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox picBodyList;
+        private System.Windows.Forms.Label label4;
     }
 }

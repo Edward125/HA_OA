@@ -57,6 +57,12 @@
     <Compile Include="frmAddUser.Designer.cs">
       <DependentUpon>frmAddUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBodyList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBodyList.Designer.cs">
+      <DependentUpon>frmBodyList.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLeaveInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     <Compile Include="TimeHelper.cs" />
     <EmbeddedResource Include="frmAddUser.resx">
       <DependentUpon>frmAddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBodyList.resx">
+      <DependentUpon>frmBodyList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLeaveInfo.resx">
       <DependentUpon>frmLeaveInfo.cs</DependentUpon>
