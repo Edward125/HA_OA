@@ -235,6 +235,7 @@
             this.btnEdit.TabIndex = 1;
             this.btnEdit.Text = "编辑";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnNew
             // 
@@ -310,6 +311,7 @@
             this.listviewinfo.Size = new System.Drawing.Size(924, 291);
             this.listviewinfo.TabIndex = 0;
             this.listviewinfo.UseCompatibleStateImageBehavior = false;
+            this.listviewinfo.SelectedIndexChanged += new System.EventHandler(this.listviewinfo_SelectedIndexChanged);
             // 
             // frmBodyList
             // 
