@@ -50,7 +50,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboQueryModel = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.btnQuerySN = new System.Windows.Forms.TextBox();
+            this.txtQuerySN = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btnQuery = new System.Windows.Forms.Button();
             this.listviewinfo = new System.Windows.Forms.ListView();
@@ -251,7 +251,7 @@
             // 
             this.groupBox2.Controls.Add(this.comboQueryModel);
             this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.btnQuerySN);
+            this.groupBox2.Controls.Add(this.txtQuerySN);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.btnQuery);
             this.groupBox2.Controls.Add(this.listviewinfo);
@@ -279,12 +279,12 @@
             this.label10.TabIndex = 18;
             this.label10.Text = "型号";
             // 
-            // btnQuerySN
+            // txtQuerySN
             // 
-            this.btnQuerySN.Location = new System.Drawing.Point(56, 20);
-            this.btnQuerySN.Name = "btnQuerySN";
-            this.btnQuerySN.Size = new System.Drawing.Size(100, 21);
-            this.btnQuerySN.TabIndex = 19;
+            this.txtQuerySN.Location = new System.Drawing.Point(56, 20);
+            this.txtQuerySN.Name = "txtQuerySN";
+            this.txtQuerySN.Size = new System.Drawing.Size(100, 21);
+            this.txtQuerySN.TabIndex = 19;
             // 
             // label9
             // 
@@ -303,6 +303,7 @@
             this.btnQuery.TabIndex = 2;
             this.btnQuery.Text = "查询";
             this.btnQuery.UseVisualStyleBackColor = true;
+            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
             // listviewinfo
             // 
@@ -357,7 +358,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboQueryModel;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox btnQuerySN;
+        private System.Windows.Forms.TextBox txtQuerySN;
         private System.Windows.Forms.Label label9;
     }
 }

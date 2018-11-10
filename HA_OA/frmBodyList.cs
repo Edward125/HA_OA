@@ -22,6 +22,7 @@ namespace HA_OA
             SetListView(listviewinfo);
             string sql = "select * from ha_bodylist order by sn";
             LoadInfo2Listview(sql, listviewinfo);
+            LoadModel(comboQueryModel);
         }
 
 
@@ -41,6 +42,24 @@ namespace HA_OA
             }
             if (comboModel.Items.Count > 0)
                 comboModel.SelectedIndex = 0;
+
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void LoadModel(ComboBox combobox)
+        {
+            combobox.Items.Clear();
+            string sql = "select * from ha_modellist";
+            List<string> model = new List<string>();
+            p.QueryDatabase(p.ConnStr, sql, "model", out model);
+            foreach (string item in model)
+            {
+                combobox.Items.Add(item);
+            }
+
 
         }
 
@@ -402,6 +421,26 @@ namespace HA_OA
             }
 
            
+        }
+
+        private void btnQuery_Click(object sender, EventArgs e)
+        {
+            string sql = "select * from ha_bodylist order by sn";
+            if (string.IsNullOrEmpty(txtQuerySN.Text))
+            {
+                if (comboQueryModel.SelectedIndex == -1)
+                    return;
+                else
+                    sql = "select * from ha_bodylist where model = '" + comboQueryModel.Text + "' order by sn";
+            }
+            else
+            {
+                if (comboQueryModel.SelectedIndex == -1)
+                    sql = "select * from ha_bodylist where sn = '" + txtQuerySN.Text.Trim() + "' order by sn";
+                else 
+                    sql = "select * from ha_bodylist where sn = '" +txtQuerySN.Text.Trim () + "and model = '" + comboQueryModel.Text + "' order by sn";
+            }
+          LoadInfo2Listview(sql, listviewinfo);
         }
 
 
