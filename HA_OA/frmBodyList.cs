@@ -436,10 +436,11 @@ namespace HA_OA
             else
             {
                 if (comboQueryModel.SelectedIndex == -1)
-                    sql = "select * from ha_bodylist where sn = '" + txtQuerySN.Text.Trim() + "' order by sn";
+                    sql = "select * from ha_bodylist where sn = " + txtQuerySN.Text.Trim() + " order by sn";
                 else 
-                    sql = "select * from ha_bodylist where sn = '" +txtQuerySN.Text.Trim () + "and model = '" + comboQueryModel.Text + "' order by sn";
+                    sql = "select * from ha_bodylist where sn = " +txtQuerySN.Text.Trim () + " and model = '" + comboQueryModel.Text + "' order by sn";
             }
+
           LoadInfo2Listview(sql, listviewinfo);
         }
 
