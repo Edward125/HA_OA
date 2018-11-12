@@ -157,7 +157,7 @@
             this.picBodyList.Image = ((System.Drawing.Image)(resources.GetObject("picBodyList.Image")));
             this.picBodyList.Location = new System.Drawing.Point(516, 12);
             this.picBodyList.Name = "picBodyList";
-            this.picBodyList.Size = new System.Drawing.Size(81, 75);
+            this.picBodyList.Size = new System.Drawing.Size(72, 75);
             this.picBodyList.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBodyList.TabIndex = 10;
             this.picBodyList.TabStop = false;

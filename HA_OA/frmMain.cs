@@ -194,6 +194,7 @@ namespace HA_OA
             DialogResult dr = MessageBox.Show("是否确认退出软件,退出点击是(Y),不退出点击否(N)?", "Exit?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
+                panel1.Controls.Clear();
                 Environment.Exit(0);
             }
             else
