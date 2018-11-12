@@ -285,6 +285,7 @@
             this.txtQuerySN.Name = "txtQuerySN";
             this.txtQuerySN.Size = new System.Drawing.Size(100, 21);
             this.txtQuerySN.TabIndex = 19;
+            this.txtQuerySN.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label9
             // 

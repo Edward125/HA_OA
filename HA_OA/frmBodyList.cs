@@ -111,12 +111,12 @@ namespace HA_OA
             listview.GridLines = true;
             listview.FullRowSelect = true;
             listview.Columns.Add("序列号", 60, HorizontalAlignment.Center);
-            listview.Columns.Add("型号", 50, HorizontalAlignment.Center);
+            listview.Columns.Add("型号", 40, HorizontalAlignment.Center);
             listview.Columns.Add("硬件", 60, HorizontalAlignment.Center);
             listview.Columns.Add("服务器IP", 100, HorizontalAlignment.Center);
-            listview.Columns.Add("账号", 80, HorizontalAlignment.Center);
-            listview.Columns.Add("密码", 80, HorizontalAlignment.Center);
-            listview.Columns.Add("更新者", 80, HorizontalAlignment.Center);
+            listview.Columns.Add("账号", 60, HorizontalAlignment.Center);
+            listview.Columns.Add("密码", 60, HorizontalAlignment.Center);
+            listview.Columns.Add("更新者", 70, HorizontalAlignment.Center);
             listview.Columns.Add("去向", 200, HorizontalAlignment.Center);
             listview.Columns.Add("备注", 200, HorizontalAlignment.Center);
 
