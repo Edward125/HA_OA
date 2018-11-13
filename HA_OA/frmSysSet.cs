@@ -117,5 +117,99 @@ namespace HA_OA
 
             }
         }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            txtOldPwd.Text = string.Empty;
+            txtNewPwd1.Text = string.Empty;
+            txtNewPwd2.Text = string.Empty;
+            txtOldPwd.Focus();
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+
+            ChangePassword();
+
+
+        }
+
+
+        private void ChangePassword()
+        {
+            if (string.IsNullOrEmpty(txtOldPwd.Text.Trim()))
+            {
+                txtOldPwd.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtNewPwd1.Text.Trim()))
+            {
+                txtNewPwd1.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtNewPwd2.Text.Trim()))
+            {
+                txtNewPwd2.Focus();
+                return;
+            }
+
+            if (DES.DesEncrypt(txtOldPwd.Text.Trim(), p.dKey) != p.LoginID.Password)
+            {
+                MessageBox.Show("旧密码不正确,请重新输入.", "密码不正确", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                txtOldPwd.SelectAll();
+                txtOldPwd.Focus();
+                return;
+            }
+
+            if (txtNewPwd1.Text.Trim() != txtNewPwd2.Text.Trim())
+            {
+                MessageBox.Show("新密码两次输入不正确,请重新输入.", "密码不正确", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                txtNewPwd1.SelectAll();
+                txtNewPwd1.Focus();
+                return;
+            }
+
+
+            DialogResult dr = MessageBox.Show("是否确认更新密码?确认更新点击是(Y),不更新点击否(N)?", "Exit?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                string exmsg = string.Empty;
+                string sql = "update ha_user  set password = '" + DES.DesEncrypt(txtNewPwd1.Text.Trim(), p.dKey) + "' where userid = '" + p.LoginID.Name + "'";
+                if (p.InsertDate2Database(p.ConnStr, sql, out exmsg))
+                {
+                    MessageBox.Show("修改密码成功.", "Update Database Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    p.LoginID.Password = DES.DesEncrypt(txtNewPwd1.Text.Trim(), p.dKey);
+                    txtNewPwd1.Text = string.Empty;
+                    txtNewPwd2.Text = string.Empty;
+                    txtOldPwd.Text = string.Empty;
+
+                }
+                else
+                {
+                    MessageBox.Show("修改密码失败," + exmsg, "Update Database Fail", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+            }
+
+        }
+
+        private void txtNewPwd2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                ChangePassword();
+        }
+
+        private void txtOldPwd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                ChangePassword();
+        }
+
+        private void txtNewPwd1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                ChangePassword();
+        }
     }
 }

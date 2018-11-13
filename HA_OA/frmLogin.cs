@@ -88,7 +88,7 @@ namespace HA_OA
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-           
+            Login();
         }
 
         private void comboUser_SelectedIndexChanged(object sender, EventArgs e)
