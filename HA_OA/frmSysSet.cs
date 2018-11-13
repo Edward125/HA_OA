@@ -87,16 +87,35 @@ namespace HA_OA
                     txtVersion.SelectAll();
                     txtVersion.Focus();
                 }
-
-                
-                
-
                
             }
             
 
 
 
+        }
+
+        private void btnDeleteVersion_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("是否删除版本号:" + lstVersion.SelectedItem.ToString () + ",删除后,该版本的软件不可以运行.确认删除点击是(Y),不删除点击否(N)?", "Exit?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                string exmsg = string.Empty;
+
+                string sql = "delete from ha_oa_version where version = '" + lstVersion.SelectedItem.ToString() + "'";
+                if (p.InsertDate2Database(p.ConnStr, sql, out exmsg))
+                {
+                    MessageBox.Show("更新数据库成功.", "Update Database Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    lstVersion.SelectedIndex = -1;
+                    LoadVersion();
+                }
+                else
+                {
+                    MessageBox.Show("更新数据库失败," + exmsg, "Update Database Fail", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    lstVersion.SelectedIndex = -1;
+                }
+
+            }
         }
     }
 }

@@ -119,6 +119,7 @@
             this.btnDeleteVersion.TabIndex = 7;
             this.btnDeleteVersion.Text = "删除版本号";
             this.btnDeleteVersion.UseVisualStyleBackColor = true;
+            this.btnDeleteVersion.Click += new System.EventHandler(this.btnDeleteVersion_Click);
             // 
             // btnAddVersion
             // 
