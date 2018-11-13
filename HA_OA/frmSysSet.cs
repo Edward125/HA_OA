@@ -315,5 +315,29 @@ namespace HA_OA
 
             }
         }
+
+        private void btnDelDep_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("是否删部门名:" + lstDepname.SelectedItem.ToString () + "?确认删除点击是(Y),不删除点击否(N)?", "更新?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                string exmsg = string.Empty;
+
+                string sql = "delete from ha_dep where depname = '" + lstDepname.SelectedItem.ToString() + "'";
+                if (p.InsertDate2Database(p.ConnStr, sql, out exmsg))
+                {
+                    MessageBox.Show("更新数据库成功.", "Update Database Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    lstDepname.SelectedIndex = -1;
+                    LoadDepartment();
+                    LoadDepartment(lstDepname);
+                }
+                else
+                {
+                    MessageBox.Show("更新数据库失败," + exmsg, "Update Database Fail", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    lstDepname.SelectedIndex = -1;
+                }
+
+            }
+        }
     }
 }

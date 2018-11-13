@@ -381,6 +381,7 @@
             this.btnDelDep.TabIndex = 8;
             this.btnDelDep.Text = "删除部门名";
             this.btnDelDep.UseVisualStyleBackColor = true;
+            this.btnDelDep.Click += new System.EventHandler(this.btnDelDep_Click);
             // 
             // label7
             // 
