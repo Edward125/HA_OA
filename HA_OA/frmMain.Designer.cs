@@ -41,10 +41,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.picBodyList = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.picSysSet = new System.Windows.Forms.PictureBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picOTInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLeaveInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAllInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBodyList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSysSet)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -173,12 +176,36 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "执法仪清单";
             // 
+            // picSysSet
+            // 
+            this.picSysSet.BackColor = System.Drawing.Color.Transparent;
+            this.picSysSet.Image = ((System.Drawing.Image)(resources.GetObject("picSysSet.Image")));
+            this.picSysSet.Location = new System.Drawing.Point(641, 12);
+            this.picSysSet.Name = "picSysSet";
+            this.picSysSet.Size = new System.Drawing.Size(81, 75);
+            this.picSysSet.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picSysSet.TabIndex = 12;
+            this.picSysSet.TabStop = false;
+            this.picSysSet.Click += new System.EventHandler(this.picSysSet_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Location = new System.Drawing.Point(654, 93);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 12);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "系统设置";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(969, 576);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.picSysSet);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.picBodyList);
             this.Controls.Add(this.label3);
@@ -204,6 +231,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLeaveInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAllInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBodyList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSysSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,5 +251,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox picBodyList;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox picSysSet;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -16,6 +16,7 @@ namespace HA_OA
         frmOverTime OT;
         frmLeaveInfo LeaveI;
         frmBodyList BodyList;
+        frmSysSet SysSet;
         public frmMain()
         {
             InitializeComponent();
@@ -211,6 +212,18 @@ namespace HA_OA
             panel1.Controls.Add(BodyList);
             BodyList.Show();
 
+        }
+
+        private void picSysSet_Click(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear();
+            BodyList = new frmBodyList();
+            SysSet = new frmSysSet();
+            SysSet.TopLevel = false;
+            SysSet.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            SysSet.Dock = DockStyle.Fill;
+            panel1.Controls.Add(SysSet);
+            SysSet.Show();
         }
 
 
