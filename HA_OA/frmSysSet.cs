@@ -41,9 +41,48 @@ namespace HA_OA
 
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="listbox"></param>
+        private void LoadInfo(string sql, string querykey,ListBox listbox)
+        {
+            listbox.Items.Clear();
+            List<string> listversion = new List<string>();
+            p.QueryDatabase(p.ConnStr, sql, querykey, out listversion);
+            if (listversion.Count > 0)
+            {
+                foreach (string item in listversion)
+                {
+                    listbox.Items.Add(item);
+                }
+            }
+        }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void LoadHwinfo()
+        {
+            string sql = "select * from ha_hwinfo";
+            LoadInfo(sql,"hwinfo", lsthwinfo);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void LoadModel()
+        {
+            string sql = "select * from ha_modellist";
+            LoadInfo(sql,"model", lstmodel);
+        }
+
+
+        /// <summary>
         /// load department
         /// </summary>
-        private void LoadDepartment()
+        private void LoadDepartmentInfo()
         {
             comboDepname.Items.Clear();
             string sql = "select *  from ha_dep";
@@ -66,20 +105,10 @@ namespace HA_OA
         /// <summary>
         /// load department
         /// </summary>
-        private void LoadDepartment(ListBox listbox)
+        private void LoadDepartment()
         {
-            listbox.Items.Clear();
             string sql = "select *  from ha_dep";
-
-            List<string> listversion = new List<string>();
-            p.QueryDatabase(p.ConnStr, sql, "depname", out listversion);
-            if (listversion.Count > 0)
-            {
-                foreach (string item in listversion)
-                {
-                    listbox.Items.Add(item);
-                }
-            }
+            LoadInfo(sql, "depname",lstDepname);
         }
 
 
@@ -94,18 +123,33 @@ namespace HA_OA
                 LoadVersion();
                 btnAddVersion.Enabled = false;
                 btnDeleteVersion.Enabled = false;
+                return;
             }
             if (tabMain.SelectedTab == tabUserSet )
             {
                 LoadDepartment();
-                LoadDepartment(lstDepname);
+                LoadDepartment();
                 btnAddDep.Enabled = false;
                 btnDelDep.Enabled = false;
                 txtNewDep.Text = string.Empty;
                 txtOldPwd.Text = string.Empty;
                 txtNewPwd1.Text = string.Empty;
                 txtNewPwd2.Text = string.Empty;
+                return;
             }
+            if (tabMain.SelectedTab == tabBodySet)
+            {
+                LoadHwinfo();
+                LoadModel();
+                txtModel.Text = string.Empty;
+                txthwinfo.Text = string.Empty;
+                btnDelModel.Enabled = false;
+                btnAddModel.Enabled = false;
+                btnAddHwinfo.Enabled = false;
+                btnDelHwinfo.Enabled = false;
+                return;
+            }
+
         }
 
         private void frmSysSet_Load(object sender, EventArgs e)
@@ -303,7 +347,7 @@ namespace HA_OA
                     MessageBox.Show("更新数据库成功.", "Update Database Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtNewDep.Text = string.Empty;
                     LoadDepartment();
-                    LoadDepartment(lstDepname);
+                    LoadDepartmentInfo();
 
                 }
                 else
@@ -328,25 +372,27 @@ namespace HA_OA
                 {
                     MessageBox.Show("更新数据库成功.", "Update Database Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     lstDepname.SelectedIndex = -1;
+                    btnDelDep.Enabled = false;
                     LoadDepartment();
-                    LoadDepartment(lstDepname);
+                    LoadDepartmentInfo();
                 }
                 else
                 {
                     MessageBox.Show("更新数据库失败," + exmsg, "Update Database Fail", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     lstDepname.SelectedIndex = -1;
+                    btnDelDep.Enabled = false;
                 }
 
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnChangeDep_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("是否确认将" + p.LoginID.Name +"的部门由'" + p.LoginID.Department +"'变更为'" + comboDepname.Text+"'?确认变更点击是(Y),不变更点击否(N)?", "更新?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dr = MessageBox.Show("是否确认将" + p.LoginID.Name + "的部门由'" + p.LoginID.Department + "'变更为'" + comboDepname.Text + "'?确认变更点击是(Y),不变更点击否(N)?", "更新?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
                 string exmsg = string.Empty;
-                string sql = "update ha_user  set depname = '" + comboDepname.Text  + "' where userid = '" + p.LoginID.Name + "'";
+                string sql = "update ha_user  set depname = '" + comboDepname.Text + "' where userid = '" + p.LoginID.Name + "'";
                 if (p.InsertDate2Database(p.ConnStr, sql, out exmsg))
                 {
                     MessageBox.Show("变更部门成功.", "Update Database Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -358,5 +404,142 @@ namespace HA_OA
                 }
             }
         }
+
+        private void txtModel_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtModel.Text.Trim ()))
+                btnAddModel.Enabled = true ;
+            else
+                btnAddModel .Enabled = false ;
+        }
+
+        private void lstmodel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstmodel.SelectedIndex == -1)
+                btnDelModel.Enabled = false;
+            else
+                btnDelModel.Enabled = true; 
+        }
+
+        private void lsthwinfo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lsthwinfo.SelectedIndex == -1)
+                btnDelHwinfo.Enabled = false;
+            else
+                btnDelHwinfo.Enabled = true;
+        }
+
+        private void btnAddModel_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("是否添加新的型号:" + txtNewDep.Text.Trim() + "?添加点击是(Y),不添加点击否(N)?", "更新?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                string exmsg = string.Empty;
+
+                string sql = "insert into ha_modellist () values ('" + txtModel.Text.Trim() + "')";
+                if (p.InsertDate2Database(p.ConnStr, sql, out exmsg))
+                {
+                    MessageBox.Show("更新数据库成功.", "Update Database Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtModel.Text = string.Empty;
+                    LoadModel();
+
+                }
+                else
+                {
+                    MessageBox.Show("更新数据库失败," + exmsg, "Update Database Fail", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    txtModel.SelectAll();
+                    txtModel.Focus();
+                }
+
+            }
+        }
+
+        private void btnAddHwinfo_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("是否添加新的硬件平台:" + txthwinfo.Text.Trim () + "?添加点击是(Y),不添加点击否(N)?", "更新?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                string exmsg = string.Empty;
+
+                string sql = "insert into ha_hwinfo () values ('" + txthwinfo.Text.Trim() + "')";
+                if (p.InsertDate2Database(p.ConnStr, sql, out exmsg))
+                {
+                    MessageBox.Show("更新数据库成功.", "Update Database Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txthwinfo.Text = string.Empty;
+                    LoadHwinfo();
+
+                }
+                else
+                {
+                    MessageBox.Show("更新数据库失败," + exmsg, "Update Database Fail", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    txthwinfo.SelectAll();
+                    txthwinfo.Focus();
+                }
+
+            }
+        }
+
+        private void btnDelModel_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("是否删机种型号:" + lstmodel.SelectedItem.ToString () + "?确认删除点击是(Y),不删除点击否(N)?", "更新?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                string exmsg = string.Empty;
+
+                string sql = "delete from ha_modellist where model = '" + lstmodel.SelectedItem.ToString() + "'";
+                if (p.InsertDate2Database(p.ConnStr, sql, out exmsg))
+                {
+                    MessageBox.Show("更新数据库成功.", "Update Database Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    lstmodel.SelectedIndex = -1;
+                    btnDelModel.Enabled = false;
+                    LoadModel();
+                }
+                else
+                {
+                    MessageBox.Show("更新数据库失败," + exmsg, "Update Database Fail", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    lstmodel.SelectedIndex = -1;
+                    btnDelModel.Enabled = false;
+                }
+
+            }
+        }
+
+        private void btnDelHwinfo_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("是否删机种硬件平台型号:" + lsthwinfo.SelectedItem.ToString() + "?确认删除点击是(Y),不删除点击否(N)?", "更新?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                string exmsg = string.Empty;
+
+                string sql = "delete from ha_hwinfo where hwinfo = '" + lsthwinfo.SelectedItem.ToString() + "'";
+                if (p.InsertDate2Database(p.ConnStr, sql, out exmsg))
+                {
+                    MessageBox.Show("更新数据库成功.", "Update Database Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    lstmodel.SelectedIndex = -1;
+                    btnDelHwinfo.Enabled = false;
+                    LoadHwinfo();
+                }
+                else
+                {
+                    MessageBox.Show("更新数据库失败," + exmsg, "Update Database Fail", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    lstmodel.SelectedIndex = -1;
+                    btnDelHwinfo.Enabled = false;
+                }
+
+            }
+        }
+
+        private void txthwinfo_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txthwinfo.Text.Trim()))
+                btnAddHwinfo.Enabled = true;
+            else
+                btnAddHwinfo.Enabled = false;
+
+        }
+
+
+
+
     }
 }
