@@ -339,5 +339,24 @@ namespace HA_OA
 
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("是否确认将" + p.LoginID.Name +"的部门由'" + p.LoginID.Department +"'变更为'" + comboDepname.Text+"'?确认变更点击是(Y),不变更点击否(N)?", "更新?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                string exmsg = string.Empty;
+                string sql = "update ha_user  set depname = '" + comboDepname.Text  + "' where userid = '" + p.LoginID.Name + "'";
+                if (p.InsertDate2Database(p.ConnStr, sql, out exmsg))
+                {
+                    MessageBox.Show("变更部门成功.", "Update Database Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    p.LoginID.Department = comboDepname.Text;
+                }
+                else
+                {
+                    MessageBox.Show("变更部门失败," + exmsg, "Update Database Fail", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+            }
+        }
     }
 }
