@@ -37,13 +37,74 @@ namespace HA_OA
 
         }
 
+
+
+
+        /// <summary>
+        /// load department
+        /// </summary>
+        private void LoadDepartment()
+        {
+            comboDepname.Items.Clear();
+            string sql = "select *  from ha_dep";
+
+            List<string> listversion = new List<string>();
+            p.QueryDatabase(p.ConnStr, sql, "depname", out listversion);
+            if (listversion.Count > 0)
+            {
+                foreach (string item in listversion)
+                {
+                    comboDepname.Items.Add(item);
+                }
+                comboDepname.Text = p.LoginID.Department;
+            }
+        }
+
+
+
+
+        /// <summary>
+        /// load department
+        /// </summary>
+        private void LoadDepartment(ListBox listbox)
+        {
+            listbox.Items.Clear();
+            string sql = "select *  from ha_dep";
+
+            List<string> listversion = new List<string>();
+            p.QueryDatabase(p.ConnStr, sql, "depname", out listversion);
+            if (listversion.Count > 0)
+            {
+                foreach (string item in listversion)
+                {
+                    listbox.Items.Add(item);
+                }
+            }
+        }
+
+
+
+
+
         private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabSysSet.Focused)
-            {
+
+          if (tabMain.SelectedTab == tabSysSet )
+          {
                 LoadVersion();
                 btnAddVersion.Enabled = false;
                 btnDeleteVersion.Enabled = false;
+            }
+            if (tabMain.SelectedTab == tabUserSet )
+            {
+                LoadDepartment();
+                LoadDepartment(lstDepname);
+                btnAddDep.Enabled = false;
+                btnDelDep.Enabled = false;
+                txtNewDep.Text = string.Empty;
+                txtOldPwd.Text = string.Empty;
+                txtNewPwd1.Text = string.Empty;
+                txtNewPwd2.Text = string.Empty;
             }
         }
 
@@ -58,18 +119,22 @@ namespace HA_OA
         {
             if (lstVersion.SelectedIndex != -1)
                 btnDeleteVersion.Enabled = true;
+            else
+                btnDeleteVersion.Enabled = false;
         }
 
         private void txtVersion_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty (txtVersion.Text.Trim ()))
-                btnAddVersion.Enabled = true ;
+            if (!string.IsNullOrEmpty(txtVersion.Text.Trim()))
+                btnAddVersion.Enabled = true;
+            else
+                btnAddVersion.Enabled = false;
 
         }
 
         private void btnAddVersion_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("是否添加新的版本号:" + txtVersion.Text.Trim ()+",添加后,该版本的软件可以运行.添加点击是(Y),不添加点击否(N)?", "Exit?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dr = MessageBox.Show("是否添加新的版本号:" + txtVersion.Text.Trim ()+",添加后,该版本的软件可以运行.添加点击是(Y),不添加点击否(N)?", "更新?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
                 string exmsg = string.Empty;
@@ -97,7 +162,7 @@ namespace HA_OA
 
         private void btnDeleteVersion_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("是否删除版本号:" + lstVersion.SelectedItem.ToString () + ",删除后,该版本的软件不可以运行.确认删除点击是(Y),不删除点击否(N)?", "Exit?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dr = MessageBox.Show("是否删除版本号:" + lstVersion.SelectedItem.ToString () + ",删除后,该版本的软件不可以运行.确认删除点击是(Y),不删除点击否(N)?", "更新?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
                 string exmsg = string.Empty;
@@ -128,10 +193,7 @@ namespace HA_OA
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-
             ChangePassword();
-
-
         }
 
 
@@ -172,7 +234,7 @@ namespace HA_OA
             }
 
 
-            DialogResult dr = MessageBox.Show("是否确认更新密码?确认更新点击是(Y),不更新点击否(N)?", "Exit?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dr = MessageBox.Show("是否确认更新密码?确认更新点击是(Y),不更新点击否(N)?", "更新?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
                 string exmsg = string.Empty;
@@ -210,6 +272,48 @@ namespace HA_OA
         {
             if (e.KeyChar == 13)
                 ChangePassword();
+        }
+
+        private void txtNewDep_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtNewDep.Text.Trim()))
+                btnAddDep.Enabled = true;
+            else
+                btnAddDep.Enabled = false;
+        }
+
+        private void lstDepname_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstDepname.SelectedIndex != -1)
+                btnDelDep.Enabled = true;
+            else
+                btnDelDep.Enabled = false;
+        }
+
+        private void btnAddDep_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("是否添加新的部门名:" + txtNewDep.Text.Trim () + "?添加点击是(Y),不添加点击否(N)?", "更新?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                string exmsg = string.Empty;
+
+                string sql = "insert into ha_dep () values ('" + txtNewDep.Text.Trim() + "')";
+                if (p.InsertDate2Database(p.ConnStr, sql, out exmsg))
+                {
+                    MessageBox.Show("更新数据库成功.", "Update Database Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtNewDep.Text = string.Empty;
+                    LoadDepartment();
+                    LoadDepartment(lstDepname);
+
+                }
+                else
+                {
+                    MessageBox.Show("更新数据库失败," + exmsg, "Update Database Fail", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    txtNewDep.SelectAll();
+                    txtNewDep.Focus();
+                }
+
+            }
         }
     }
 }

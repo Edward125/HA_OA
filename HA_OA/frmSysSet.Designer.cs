@@ -49,11 +49,24 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnModify = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.comboDepname = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lstDepname = new System.Windows.Forms.ListBox();
+            this.txtNewDep = new System.Windows.Forms.TextBox();
+            this.btnAddDep = new System.Windows.Forms.Button();
+            this.btnDelDep = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabMain.SuspendLayout();
             this.tabUserSet.SuspendLayout();
             this.tabBodySet.SuspendLayout();
             this.tabSysSet.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMain
@@ -70,6 +83,8 @@
             // 
             // tabUserSet
             // 
+            this.tabUserSet.Controls.Add(this.groupBox5);
+            this.tabUserSet.Controls.Add(this.groupBox4);
             this.tabUserSet.Controls.Add(this.groupBox3);
             this.tabUserSet.Location = new System.Drawing.Point(4, 22);
             this.tabUserSet.Name = "tabUserSet";
@@ -194,7 +209,7 @@
             this.groupBox3.Size = new System.Drawing.Size(239, 172);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "修改密码";
+            this.groupBox3.Text = "密码修改";
             // 
             // txtOldPwd
             // 
@@ -273,6 +288,118 @@
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Controls.Add(this.btnDelDep);
+            this.groupBox4.Controls.Add(this.btnAddDep);
+            this.groupBox4.Controls.Add(this.txtNewDep);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Controls.Add(this.lstDepname);
+            this.groupBox4.Location = new System.Drawing.Point(269, 15);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(271, 276);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "部门增删";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label6);
+            this.groupBox5.Controls.Add(this.button1);
+            this.groupBox5.Controls.Add(this.comboDepname);
+            this.groupBox5.Location = new System.Drawing.Point(15, 193);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(239, 98);
+            this.groupBox5.TabIndex = 2;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "部门修改";
+            // 
+            // comboDepname
+            // 
+            this.comboDepname.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboDepname.FormattingEnabled = true;
+            this.comboDepname.Location = new System.Drawing.Point(65, 27);
+            this.comboDepname.Name = "comboDepname";
+            this.comboDepname.Size = new System.Drawing.Size(153, 20);
+            this.comboDepname.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(74, 59);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(91, 31);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "确认修改";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 30);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 12);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "部门列表";
+            // 
+            // lstDepname
+            // 
+            this.lstDepname.FormattingEnabled = true;
+            this.lstDepname.ItemHeight = 12;
+            this.lstDepname.Location = new System.Drawing.Point(6, 32);
+            this.lstDepname.Name = "lstDepname";
+            this.lstDepname.Size = new System.Drawing.Size(139, 232);
+            this.lstDepname.TabIndex = 0;
+            this.lstDepname.SelectedIndexChanged += new System.EventHandler(this.lstDepname_SelectedIndexChanged);
+            // 
+            // txtNewDep
+            // 
+            this.txtNewDep.Location = new System.Drawing.Point(154, 52);
+            this.txtNewDep.Name = "txtNewDep";
+            this.txtNewDep.Size = new System.Drawing.Size(101, 21);
+            this.txtNewDep.TabIndex = 7;
+            this.txtNewDep.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNewDep.TextChanged += new System.EventHandler(this.txtNewDep_TextChanged);
+            // 
+            // btnAddDep
+            // 
+            this.btnAddDep.Enabled = false;
+            this.btnAddDep.Location = new System.Drawing.Point(154, 79);
+            this.btnAddDep.Name = "btnAddDep";
+            this.btnAddDep.Size = new System.Drawing.Size(101, 31);
+            this.btnAddDep.TabIndex = 7;
+            this.btnAddDep.Text = "增加部门名";
+            this.btnAddDep.UseVisualStyleBackColor = true;
+            this.btnAddDep.Click += new System.EventHandler(this.btnAddDep_Click);
+            // 
+            // btnDelDep
+            // 
+            this.btnDelDep.Enabled = false;
+            this.btnDelDep.Location = new System.Drawing.Point(154, 116);
+            this.btnDelDep.Name = "btnDelDep";
+            this.btnDelDep.Size = new System.Drawing.Size(101, 31);
+            this.btnDelDep.TabIndex = 8;
+            this.btnDelDep.Text = "删除部门名";
+            this.btnDelDep.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(39, 17);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 12);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "部门列表";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(180, 33);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 12);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "新部门名";
+            // 
             // frmSysSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -289,6 +416,10 @@
             this.tabSysSet.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -316,5 +447,16 @@
         private System.Windows.Forms.TextBox txtOldPwd;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnModify;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox comboDepname;
+        private System.Windows.Forms.ListBox lstDepname;
+        private System.Windows.Forms.Button btnDelDep;
+        private System.Windows.Forms.Button btnAddDep;
+        private System.Windows.Forms.TextBox txtNewDep;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
     }
 }
