@@ -49,6 +49,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.listviewInfo = new System.Windows.Forms.ListView();
+            this.btnOutput = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -187,6 +188,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnOutput);
             this.groupBox2.Controls.Add(this.txtInfo);
             this.groupBox2.Controls.Add(this.btnQuery);
             this.groupBox2.Controls.Add(this.dtpEndDate);
@@ -203,16 +205,16 @@
             // 
             // txtInfo
             // 
-            this.txtInfo.Location = new System.Drawing.Point(503, 17);
+            this.txtInfo.Location = new System.Drawing.Point(547, 17);
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.ReadOnly = true;
-            this.txtInfo.Size = new System.Drawing.Size(427, 21);
+            this.txtInfo.Size = new System.Drawing.Size(383, 21);
             this.txtInfo.TabIndex = 13;
             this.txtInfo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(417, 13);
+            this.btnQuery.Location = new System.Drawing.Point(400, 13);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(63, 31);
             this.btnQuery.TabIndex = 10;
@@ -224,7 +226,7 @@
             // 
             this.dtpEndDate.CustomFormat = "yyyy-MM-dd";
             this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpEndDate.Location = new System.Drawing.Point(282, 19);
+            this.dtpEndDate.Location = new System.Drawing.Point(265, 19);
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(117, 21);
             this.dtpEndDate.TabIndex = 12;
@@ -232,7 +234,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(223, 24);
+            this.label6.Location = new System.Drawing.Point(206, 24);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 11;
@@ -264,6 +266,16 @@
             this.listviewInfo.TabIndex = 0;
             this.listviewInfo.UseCompatibleStateImageBehavior = false;
             // 
+            // btnOutput
+            // 
+            this.btnOutput.Location = new System.Drawing.Point(474, 13);
+            this.btnOutput.Name = "btnOutput";
+            this.btnOutput.Size = new System.Drawing.Size(63, 31);
+            this.btnOutput.TabIndex = 14;
+            this.btnOutput.Text = "输出";
+            this.btnOutput.UseVisualStyleBackColor = true;
+            this.btnOutput.Click += new System.EventHandler(this.btnOutput_Click);
+            // 
             // frmOverTime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -272,6 +284,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmOverTime";
+            this.Text = "OT";
             this.Load += new System.EventHandler(this.frmOverTime_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -304,6 +317,7 @@
         private System.Windows.Forms.TextBox txtInfo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtHours;
+        private System.Windows.Forms.Button btnOutput;
 
     }
 }

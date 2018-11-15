@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
 
 namespace HA_OA
 {
@@ -267,6 +268,78 @@ namespace HA_OA
         private void txtReason_DoubleClick(object sender, EventArgs e)
         {
             txtReason.SelectAll();
+        }
+
+        private void btnOutput_Click(object sender, EventArgs e)
+        {
+
+            string destfile = p.LoginID.Name + "加班信息_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls";
+            OutPutDataFromListView(listviewInfo, destfile);
+
+        }
+
+
+
+
+        public static void OutPutDataFromListView(ListView listview,string destfile)
+        {
+            if (listview.Items.Count > 0)
+            {
+                string tempfile = System.Windows.Forms.Application.StartupPath + @"\sample.xls";
+                if (p.downLoadFile(tempfile))
+                {
+
+                    Microsoft.Office.Interop.Excel.Application objExcel = new Microsoft.Office.Interop.Excel.Application();
+                    Workbook objWorkbook = objExcel.Workbooks.Add(tempfile);
+                    //objExcel.Cells[3, 7] = gagedate;
+                    //objExcel.Cells[4, 7] = enginner;
+                    //objExcel.Cells[5, 7] = model;
+                    //objExcel.Cells[6, 7] = machine;
+                    //objWorkbook.SaveAs(fileName);
+
+                    //foreach (ListViewItem item in listview.Items)
+                    //{
+                    //    foreach (ListViewItem.ListViewSubItem subitem in item.SubItems)
+                    //    {
+                    //        //MessageBox.Show(subitem.Text);
+                    //    }
+
+                    //}
+
+                    for (int i = 0; i < listview.Items.Count ; i++)
+                    {
+                        for (int j = 0; j < listview.Items[i].SubItems.Count; j++)
+                        {
+                            System.Windows.Forms.Application.DoEvents();
+                            objExcel.Cells[i + 2, j + 1] = listview.Items[i].SubItems[j].Text;
+
+                        }
+
+                    }
+
+
+                    objExcel.DisplayAlerts = false;
+                    objExcel.AlertBeforeOverwriting = false;
+                    objWorkbook.SaveAs(destfile);
+                    objWorkbook.Close();
+                    objExcel.SaveWorkspace();
+                   // objExcel.ActiveWorkbook.SaveAs(destfile);
+                    objExcel.Quit();
+                    objExcel = null;
+                    p.KillExcel();
+                  DialogResult dr =  MessageBox.Show ("文件:" + destfile +"已输出,保存在" + System.Windows.Forms.Application.StartupPath+",打开文件所在路径,点击是(Y),不打开点击否(N)","输出完成",
+                        MessageBoxButtons.YesNoCancel ,MessageBoxIcon.Question );
+                  if (dr == DialogResult.Yes)
+                  {
+                      System.Diagnostics.Process.Start(System.Windows.Forms.Application.StartupPath);
+                  }
+                }
+            }
+            else
+            {
+                MessageBox.Show("未发现有记录,请重新确认.", "无记录", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
         }
 
     }

@@ -49,6 +49,7 @@
             this.comboDep = new System.Windows.Forms.ComboBox();
             this.btnAddNew = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnOutput = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -192,6 +193,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnOutput);
             this.groupBox2.Controls.Add(this.txtInfo);
             this.groupBox2.Controls.Add(this.btnQuery);
             this.groupBox2.Controls.Add(this.dtpEndDate);
@@ -208,10 +210,10 @@
             // 
             // txtInfo
             // 
-            this.txtInfo.Location = new System.Drawing.Point(503, 17);
+            this.txtInfo.Location = new System.Drawing.Point(561, 17);
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.ReadOnly = true;
-            this.txtInfo.Size = new System.Drawing.Size(427, 21);
+            this.txtInfo.Size = new System.Drawing.Size(369, 21);
             this.txtInfo.TabIndex = 13;
             this.txtInfo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -264,6 +266,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "新增请假";
             // 
+            // btnOutput
+            // 
+            this.btnOutput.Location = new System.Drawing.Point(492, 13);
+            this.btnOutput.Name = "btnOutput";
+            this.btnOutput.Size = new System.Drawing.Size(63, 31);
+            this.btnOutput.TabIndex = 15;
+            this.btnOutput.Text = "输出";
+            this.btnOutput.UseVisualStyleBackColor = true;
+            // 
             // frmLeaveInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -305,5 +316,6 @@
         private System.Windows.Forms.ComboBox comboDep;
         private System.Windows.Forms.Button btnAddNew;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnOutput;
     }
 }
