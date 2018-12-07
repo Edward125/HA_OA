@@ -287,7 +287,9 @@ namespace HA_OA
         {
 
             string destfile = System.Windows.Forms.Application.StartupPath +@"\"+ p.LoginID.Name + "加班信息_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls";
+            this.Enabled = false;
             OutPutDataFromListView(listviewInfo, destfile);
+            this.Enabled = true;
 
         }
 
@@ -297,43 +299,72 @@ namespace HA_OA
 
             if (listview.Items.Count > 0)
             {
+               
                 initailExcel();
               //  _Excel = new Excel.Application();
                 Excel.Workbook book = null;
                 Excel.Worksheet sheet = null;
                 Excel.Range range = null;
-                string tempfile = System.Windows.Forms.Application.StartupPath + @"\sample.xls";
-                if (p.downLoadFile(tempfile))
+                //string tempfile = System.Windows.Forms.Application.StartupPath + @"\sample.xls";
+                //if (p.downLoadFile(tempfile))
+                //{
+                    
+                //}
+
+                try
                 {
-                    try
+                    //book = _Excel.Workbooks.Open(tempfile);//開啟舊檔案
+                    book = _Excel.Workbooks.Add(true);
+                    //sheet = (Excel.Worksheet)book.Sheets[1];//指定活頁簿,代表Sheet1 
+                    sheet = (Excel.Worksheet)book.Sheets["Sheet1"];//也可以直接指定工作表名稱 
+
+                    sheet.Cells[1, 1] = "部门";
+                    sheet.Cells[1, 2] = "姓名";
+                    sheet.Cells[1, 3] = "日期";
+                    sheet.Cells[1, 4] = "开始时间";
+                    sheet.Cells[1, 5] = "结束时间";
+                    sheet.Cells[1, 6] = "时长";
+                    sheet.Cells[1, 7] = "填写时间";
+                    sheet.Cells[1, 8] = "事由";
+
+                    for (int i = 0; i < listview.Items.Count; i++)
                     {
-                        //book = _Excel.Workbooks.Open(tempfile);//開啟舊檔案
-                        book = _Excel.Workbooks.Add(tempfile);
-                        //sheet = (Excel.Worksheet)book.Sheets[1];//指定活頁簿,代表Sheet1 
-                        sheet = (Excel.Worksheet)book.Sheets["Sheet1"];//也可以直接指定工作表名稱 
-                        for (int i = 0; i < listview.Items.Count; i++)
+                        for (int j = 0; j < listview.Items[i].SubItems.Count; j++)
                         {
-                            for (int j = 0; j < listview.Items[i].SubItems.Count; j++)
-                            {
-                                System.Windows.Forms.Application.DoEvents();
-                                sheet.Cells[i + 2, j + 1] = listview.Items[i].SubItems[j].Text;
-                            }
-                        }
-                        _Excel.AlertBeforeOverwriting = false;
-                        book.SaveAs(destfile, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
-                        DialogResult dr = MessageBox.Show("文件:" + destfile + "已输出,保存在" + System.Windows.Forms.Application.StartupPath + ",打开文件所在路径,点击是(Y),不打开点击否(N)", "输出完成",
-                                        MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                        if (dr == DialogResult.Yes)
-                        {
-                            System.Diagnostics.Process.Start(System.Windows.Forms.Application.StartupPath);
+                            System.Windows.Forms.Application.DoEvents();
+                            sheet.Cells[i + 2, j + 1] = listview.Items[i].SubItems[j].Text;
                         }
                     }
-                    finally
+                    _Excel.AlertBeforeOverwriting = false;
+
+                    sheet.UsedRange.HorizontalAlignment = XlVAlign.xlVAlignCenter;
+                    sheet.UsedRange.Font.Size = 9;
+                    sheet.UsedRange.Borders[XlBordersIndex.xlEdgeLeft].Weight = XlBorderWeight.xlThin;//
+                    sheet.UsedRange.Borders[XlBordersIndex.xlEdgeLeft].LineStyle = XlLineStyle.xlContinuous;
+                    sheet.UsedRange.Borders[XlBordersIndex.xlEdgeTop].Weight = XlBorderWeight.xlThin;//
+                    sheet.UsedRange.Borders[XlBordersIndex.xlEdgeTop].LineStyle = XlLineStyle.xlContinuous;
+                    sheet.UsedRange.Borders[XlBordersIndex.xlEdgeBottom].Weight = XlBorderWeight.xlThin;//
+                    sheet.UsedRange.Borders[XlBordersIndex.xlEdgeBottom].LineStyle = XlLineStyle.xlContinuous;
+                    sheet.UsedRange.Borders[XlBordersIndex.xlEdgeRight].Weight = XlBorderWeight.xlThin;//
+                    sheet.UsedRange.Borders[XlBordersIndex.xlEdgeRight].LineStyle = XlLineStyle.xlContinuous;
+                    sheet.UsedRange.Borders[XlBordersIndex.xlInsideHorizontal].Weight = XlBorderWeight.xlThin;//
+                    sheet.UsedRange.Borders[XlBordersIndex.xlInsideHorizontal].LineStyle = XlLineStyle.xlContinuous;
+                    sheet.UsedRange.Borders[XlBordersIndex.xlInsideVertical].Weight = XlBorderWeight.xlThin;//
+                    sheet.UsedRange.Borders[XlBordersIndex.xlInsideVertical].LineStyle = XlLineStyle.xlContinuous;
+                    sheet.Columns.AutoFit();
+                    book.SaveAs(destfile, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+                    DialogResult dr = MessageBox.Show("文件:" + destfile + "已输出,保存在" + System.Windows.Forms.Application.StartupPath + ",打开文件所在路径,点击是(Y),不打开点击否(N)", "输出完成",
+                                    MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    if (dr == DialogResult.Yes)
                     {
-                        book.Close();
-                        book = null;
-                        p.KillExcel();
+                        System.Diagnostics.Process.Start(System.Windows.Forms.Application.StartupPath);
                     }
+                }
+                finally
+                {
+                    book.Close();
+                    book = null;
+                    // p.KillExcel();
                 }
             }
             else
