@@ -304,7 +304,7 @@ namespace HA_OA
               //  _Excel = new Excel.Application();
                 Excel.Workbook book = null;
                 Excel.Worksheet sheet = null;
-                Excel.Range range = null;
+               // Excel.Range range = null;
                 //string tempfile = System.Windows.Forms.Application.StartupPath + @"\sample.xls";
                 //if (p.downLoadFile(tempfile))
                 //{
@@ -410,7 +410,7 @@ namespace HA_OA
            Excel.Range range = null;
            string path = System.Windows.Forms.Application.StartupPath + " \\test.xlsx";
            string tempfile = System.Windows.Forms.Application.StartupPath + @"\sample.xls";
-           p.downLoadFile(tempfile);
+          // p.downLoadFile(tempfile);
            try
            {
                book = _Excel.Workbooks.Open(tempfile);//開啟舊檔案

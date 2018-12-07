@@ -130,5 +130,13 @@ namespace HA_OA
             txtReason.SelectAll();
            
         }
+
+        private void btnOutput_Click(object sender, EventArgs e)
+        {
+            string destfile = System.Windows.Forms.Application.StartupPath + @"\" + p.LoginID.Name + "请假信息_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls";
+            this.Enabled = false;
+            frmOverTime. OutPutDataFromListView(listviewInfo, destfile);
+            this.Enabled = true;
+        }
     }
 }

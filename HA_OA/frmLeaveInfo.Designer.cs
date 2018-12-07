@@ -44,12 +44,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dtpStartTime = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnOutput = new System.Windows.Forms.Button();
             this.txtInfo = new System.Windows.Forms.TextBox();
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.comboDep = new System.Windows.Forms.ComboBox();
             this.btnAddNew = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnOutput = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -208,6 +208,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "请假信息";
             // 
+            // btnOutput
+            // 
+            this.btnOutput.Location = new System.Drawing.Point(492, 13);
+            this.btnOutput.Name = "btnOutput";
+            this.btnOutput.Size = new System.Drawing.Size(63, 31);
+            this.btnOutput.TabIndex = 15;
+            this.btnOutput.Text = "输出";
+            this.btnOutput.UseVisualStyleBackColor = true;
+            this.btnOutput.Click += new System.EventHandler(this.btnOutput_Click);
+            // 
             // txtInfo
             // 
             this.txtInfo.Location = new System.Drawing.Point(561, 17);
@@ -265,15 +275,6 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "新增请假";
-            // 
-            // btnOutput
-            // 
-            this.btnOutput.Location = new System.Drawing.Point(492, 13);
-            this.btnOutput.Name = "btnOutput";
-            this.btnOutput.Size = new System.Drawing.Size(63, 31);
-            this.btnOutput.TabIndex = 15;
-            this.btnOutput.Text = "输出";
-            this.btnOutput.UseVisualStyleBackColor = true;
             // 
             // frmLeaveInfo
             // 

@@ -50,64 +50,64 @@ namespace HA_OA
 
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="filePath"></param>
-        /// <returns></returns>
-        public static  bool downLoadBodyFile(string filePath)
-        {
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="filePath"></param>
+        ///// <returns></returns>
+        //public static  bool downLoadBodyFile(string filePath)
+        //{
 
-            if (!File.Exists(filePath))
-            {
-                byte[] template = Properties.Resources.bodysample;
-                FileStream stream = new FileStream(filePath, FileMode.Create);
-                try
-                {
-                    stream.Write(template, 0, template.Length);
-                    stream.Close();
-                    stream.Dispose();
-                    File.SetAttributes(filePath, FileAttributes.Hidden);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Create Tempalte Fail,Message:" + ex.Message);
-                    return false;
-                }
+        //    if (!File.Exists(filePath))
+        //    {
+        //        byte[] template = Properties.Resources.bodysample;
+        //        FileStream stream = new FileStream(filePath, FileMode.Create);
+        //        try
+        //        {
+        //            stream.Write(template, 0, template.Length);
+        //            stream.Close();
+        //            stream.Dispose();
+        //            File.SetAttributes(filePath, FileAttributes.Hidden);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("Create Tempalte Fail,Message:" + ex.Message);
+        //            return false;
+        //        }
 
-            }
-            return true;
-        }
+        //    }
+        //    return true;
+        //}
 
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="filePath"></param>
-        /// <returns></returns>
-        public static bool downLoadFile(string filePath)
-        {
-            if (!File.Exists(filePath))
-            {
-                byte[] template = Properties.Resources.sample;
-                FileStream stream = new FileStream(filePath, FileMode.Create);
-                try
-                {
-                    stream.Write(template, 0, template.Length);
-                    stream.Close();
-                    stream.Dispose();
-                    File.SetAttributes(filePath, FileAttributes.Hidden);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Create Tempalte Fail,Message:" + ex.Message);
-                    return false;
-                }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="filePath"></param>
+        ///// <returns></returns>
+        //public static bool downLoadFile(string filePath)
+        //{
+        //    if (!File.Exists(filePath))
+        //    {
+        //        byte[] template = Properties.Resources.sample;
+        //        FileStream stream = new FileStream(filePath, FileMode.Create);
+        //        try
+        //        {
+        //            stream.Write(template, 0, template.Length);
+        //            stream.Close();
+        //            stream.Dispose();
+        //            File.SetAttributes(filePath, FileAttributes.Hidden);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("Create Tempalte Fail,Message:" + ex.Message);
+        //            return false;
+        //        }
 
-            }
-            return true;
-        }
+        //    }
+        //    return true;
+        //}
 
 
         #region KillExcel

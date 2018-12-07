@@ -7,6 +7,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Reflection;
+using Microsoft.Office.Interop.Excel;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace HA_OA
 {
@@ -17,11 +22,12 @@ namespace HA_OA
             InitializeComponent();
         }
 
+        public static Excel.Application _Excel = null;
         private void frmBodyList_Load(object sender, EventArgs e)
         {
-            SetListView(listviewinfo);
+            SetListView(listviewInfo);
             string sql = "select * from ha_bodylist order by sn";
-            LoadInfo2Listview(sql, listviewinfo);
+            LoadInfo2Listview(sql, listviewInfo);
             LoadModel(comboQueryModel);
         }
 
@@ -244,7 +250,7 @@ namespace HA_OA
                 {
                     SaveOKUI();
                     string   sql = "select * from ha_bodylist order by sn";
-                    LoadInfo2Listview(sql, listviewinfo);
+                    LoadInfo2Listview(sql, listviewInfo);
                 }
       
                 //string sn = txtSN.Text.Trim();
@@ -403,7 +409,7 @@ namespace HA_OA
                 {
                     EditOKUI();
                     string sql = "select * from ha_bodylist order by sn";
-                    LoadInfo2Listview(sql, listviewinfo);
+                    LoadInfo2Listview(sql, listviewInfo);
 
                 }
  
@@ -415,16 +421,16 @@ namespace HA_OA
         {
             try
             {
-                if (listviewinfo.SelectedItems.Count > 0)
+                if (listviewInfo.SelectedItems.Count > 0)
                 {
-                    txtSN.Text = listviewinfo.SelectedItems[0].SubItems[0].Text;
-                    comboModel.Text = listviewinfo.SelectedItems[0].SubItems[1].Text;
-                    comboHwInfo.Text = listviewinfo.SelectedItems[0].SubItems[2].Text;
-                    txtIP.Text = listviewinfo.SelectedItems[0].SubItems[3].Text;
-                    txtID.Text = listviewinfo.SelectedItems[0].SubItems[4].Text;
-                    txtpwd.Text = listviewinfo.SelectedItems[0].SubItems[5].Text;
-                    txtLocation.Text = listviewinfo.SelectedItems[0].SubItems[7].Text;
-                    txtRemark.Text = listviewinfo.SelectedItems[0].SubItems[8].Text;
+                    txtSN.Text = listviewInfo.SelectedItems[0].SubItems[0].Text;
+                    comboModel.Text = listviewInfo.SelectedItems[0].SubItems[1].Text;
+                    comboHwInfo.Text = listviewInfo.SelectedItems[0].SubItems[2].Text;
+                    txtIP.Text = listviewInfo.SelectedItems[0].SubItems[3].Text;
+                    txtID.Text = listviewInfo.SelectedItems[0].SubItems[4].Text;
+                    txtpwd.Text = listviewInfo.SelectedItems[0].SubItems[5].Text;
+                    txtLocation.Text = listviewInfo.SelectedItems[0].SubItems[7].Text;
+                    txtRemark.Text = listviewInfo.SelectedItems[0].SubItems[8].Text;
                 }
 
      
@@ -456,7 +462,123 @@ namespace HA_OA
                     sql = "select * from ha_bodylist where sn = " +txtQuerySN.Text.Trim () + " and model = '" + comboQueryModel.Text + "' order by sn";
             }
 
-          LoadInfo2Listview(sql, listviewinfo);
+          LoadInfo2Listview(sql, listviewInfo);
+        }
+
+        private void btnOutput_Click(object sender, EventArgs e)
+        {
+            string destfile = System.Windows.Forms.Application.StartupPath + @"\" +  "执法仪清单信息_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls";
+            this.Enabled = false;
+            OutPutDataFromListView(listviewInfo, destfile);
+            this.Enabled = true;
+        }
+
+        public static void OutPutDataFromListView(ListView listview, string destfile)
+        {
+
+            if (listview.Items.Count > 0)
+            {
+
+                  initailExcel();
+                //  _Excel = new Excel.Application();
+                Excel.Workbook book = null;
+                Excel.Worksheet sheet = null;
+                //Excel.Range range = null;
+                //string tempfile = System.Windows.Forms.Application.StartupPath + @"\sample.xls";
+                //if (p.downLoadFile(tempfile))
+                //{
+
+                //}
+
+                try
+                {
+                    //book = _Excel.Workbooks.Open(tempfile);//開啟舊檔案
+                    book = _Excel.Workbooks.Add(true);
+                    //sheet = (Excel.Worksheet)book.Sheets[1];//指定活頁簿,代表Sheet1 
+                    sheet = (Excel.Worksheet)book.Sheets["Sheet1"];//也可以直接指定工作表名稱 
+
+                    sheet.Cells[1, 1] = "序列号";
+                    sheet.Cells[1, 2] = "型号";
+                    sheet.Cells[1, 3] = "硬件";
+                    sheet.Cells[1, 4] = "服务器IP";
+                    sheet.Cells[1, 5] = "账号";
+                    sheet.Cells[1, 6] = "密码";
+                    sheet.Cells[1, 7] = "更新者";
+                    sheet.Cells[1, 8] = "去向";
+                    sheet.Cells[1, 9] = "备注";
+                    sheet.Columns["F:F"].NumberFormatLocal = "@";
+
+                    for (int i = 0; i < listview.Items.Count; i++)
+                    {
+                        for (int j = 0; j < listview.Items[i].SubItems.Count; j++)
+                        {
+                            System.Windows.Forms.Application.DoEvents();
+                            sheet.Cells[i + 2, j + 1] = listview.Items[i].SubItems[j].Text;
+                        }
+                    }
+                    _Excel.AlertBeforeOverwriting = false;
+
+                    sheet.UsedRange.HorizontalAlignment = XlVAlign.xlVAlignCenter;
+                    sheet.UsedRange.Font.Size = 9;
+                    sheet.UsedRange.Borders[XlBordersIndex.xlEdgeLeft].Weight = XlBorderWeight.xlThin;//
+                    sheet.UsedRange.Borders[XlBordersIndex.xlEdgeLeft].LineStyle = XlLineStyle.xlContinuous;
+                    sheet.UsedRange.Borders[XlBordersIndex.xlEdgeTop].Weight = XlBorderWeight.xlThin;//
+                    sheet.UsedRange.Borders[XlBordersIndex.xlEdgeTop].LineStyle = XlLineStyle.xlContinuous;
+                    sheet.UsedRange.Borders[XlBordersIndex.xlEdgeBottom].Weight = XlBorderWeight.xlThin;//
+                    sheet.UsedRange.Borders[XlBordersIndex.xlEdgeBottom].LineStyle = XlLineStyle.xlContinuous;
+                    sheet.UsedRange.Borders[XlBordersIndex.xlEdgeRight].Weight = XlBorderWeight.xlThin;//
+                    sheet.UsedRange.Borders[XlBordersIndex.xlEdgeRight].LineStyle = XlLineStyle.xlContinuous;
+                    sheet.UsedRange.Borders[XlBordersIndex.xlInsideHorizontal].Weight = XlBorderWeight.xlThin;//
+                    sheet.UsedRange.Borders[XlBordersIndex.xlInsideHorizontal].LineStyle = XlLineStyle.xlContinuous;
+                    sheet.UsedRange.Borders[XlBordersIndex.xlInsideVertical].Weight = XlBorderWeight.xlThin;//
+                    sheet.UsedRange.Borders[XlBordersIndex.xlInsideVertical].LineStyle = XlLineStyle.xlContinuous;
+                    sheet.Columns.AutoFit();
+                    book.SaveAs(destfile, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+                    DialogResult dr = MessageBox.Show("文件:" + destfile + "已输出,保存在" + System.Windows.Forms.Application.StartupPath + ",打开文件所在路径,点击是(Y),不打开点击否(N)", "输出完成",
+                                    MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    if (dr == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start(System.Windows.Forms.Application.StartupPath);
+                    }
+                }
+                finally
+                {
+                    book.Close();
+                    book = null;
+                    // p.KillExcel();
+                }
+            }
+            else
+            {
+                MessageBox.Show("未发现有记录,请重新确认.", "无记录", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
+
+        public static void initailExcel()
+        {
+            //檢查PC有無Excel在執行
+            bool flag = false;
+            foreach (var item in Process.GetProcesses())
+            {
+                if (item.ProcessName == "EXCEL")
+                {
+                    flag = true;
+                    break;
+                }
+            }
+
+            if (!flag)
+            {
+                _Excel = new Excel.Application();
+            }
+            else
+            {
+                object obj = Marshal.GetActiveObject("Excel.Application");//引用已在執行的Excel
+                _Excel = obj as Excel.Application;
+            }
+
+            _Excel.Visible = false;//設false效能會比較好
         }
 
 

@@ -53,7 +53,8 @@
             this.txtQuerySN = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btnQuery = new System.Windows.Forms.Button();
-            this.listviewinfo = new System.Windows.Forms.ListView();
+            this.listviewInfo = new System.Windows.Forms.ListView();
+            this.btnOutput = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -249,12 +250,13 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnOutput);
             this.groupBox2.Controls.Add(this.comboQueryModel);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.txtQuerySN);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.btnQuery);
-            this.groupBox2.Controls.Add(this.listviewinfo);
+            this.groupBox2.Controls.Add(this.listviewInfo);
             this.groupBox2.Location = new System.Drawing.Point(12, 98);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(940, 351);
@@ -306,14 +308,24 @@
             this.btnQuery.UseVisualStyleBackColor = true;
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
-            // listviewinfo
+            // listviewInfo
             // 
-            this.listviewinfo.Location = new System.Drawing.Point(6, 54);
-            this.listviewinfo.Name = "listviewinfo";
-            this.listviewinfo.Size = new System.Drawing.Size(924, 291);
-            this.listviewinfo.TabIndex = 0;
-            this.listviewinfo.UseCompatibleStateImageBehavior = false;
-            this.listviewinfo.SelectedIndexChanged += new System.EventHandler(this.listviewinfo_SelectedIndexChanged);
+            this.listviewInfo.Location = new System.Drawing.Point(6, 54);
+            this.listviewInfo.Name = "listviewInfo";
+            this.listviewInfo.Size = new System.Drawing.Size(924, 291);
+            this.listviewInfo.TabIndex = 0;
+            this.listviewInfo.UseCompatibleStateImageBehavior = false;
+            this.listviewInfo.SelectedIndexChanged += new System.EventHandler(this.listviewinfo_SelectedIndexChanged);
+            // 
+            // btnOutput
+            // 
+            this.btnOutput.Location = new System.Drawing.Point(341, 17);
+            this.btnOutput.Name = "btnOutput";
+            this.btnOutput.Size = new System.Drawing.Size(63, 27);
+            this.btnOutput.TabIndex = 20;
+            this.btnOutput.Text = "输出";
+            this.btnOutput.UseVisualStyleBackColor = true;
+            this.btnOutput.Click += new System.EventHandler(this.btnOutput_Click);
             // 
             // frmBodyList
             // 
@@ -337,7 +349,7 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListView listviewinfo;
+        private System.Windows.Forms.ListView listviewInfo;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Button btnQuery;
@@ -361,5 +373,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtQuerySN;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnOutput;
     }
 }
