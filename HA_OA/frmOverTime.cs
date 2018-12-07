@@ -8,6 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Reflection;
 
 namespace HA_OA
 {
@@ -17,6 +21,12 @@ namespace HA_OA
         {
             InitializeComponent();
         }
+
+
+
+
+    //  public static  Microsoft.Office.Interop. Excel.Application _Excel = null;
+       public static  Excel.Application _Excel = null;
 
         private void frmOverTime_Load(object sender, EventArgs e)
         {
@@ -37,6 +47,9 @@ namespace HA_OA
 
         }
         #endregion
+
+
+
 
 
         private void LoadUI()
@@ -273,66 +286,54 @@ namespace HA_OA
         private void btnOutput_Click(object sender, EventArgs e)
         {
 
-            string destfile = p.LoginID.Name + "加班信息_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls";
+            string destfile = System.Windows.Forms.Application.StartupPath +@"\"+ p.LoginID.Name + "加班信息_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls";
             OutPutDataFromListView(listviewInfo, destfile);
 
         }
 
 
-
-
         public static void OutPutDataFromListView(ListView listview,string destfile)
         {
+
             if (listview.Items.Count > 0)
             {
+                initailExcel();
+              //  _Excel = new Excel.Application();
+                Excel.Workbook book = null;
+                Excel.Worksheet sheet = null;
+                Excel.Range range = null;
                 string tempfile = System.Windows.Forms.Application.StartupPath + @"\sample.xls";
                 if (p.downLoadFile(tempfile))
                 {
-
-                    Microsoft.Office.Interop.Excel.Application objExcel = new Microsoft.Office.Interop.Excel.Application();
-                    Workbook objWorkbook = objExcel.Workbooks.Add(tempfile);
-                    //objExcel.Cells[3, 7] = gagedate;
-                    //objExcel.Cells[4, 7] = enginner;
-                    //objExcel.Cells[5, 7] = model;
-                    //objExcel.Cells[6, 7] = machine;
-                    //objWorkbook.SaveAs(fileName);
-
-                    //foreach (ListViewItem item in listview.Items)
-                    //{
-                    //    foreach (ListViewItem.ListViewSubItem subitem in item.SubItems)
-                    //    {
-                    //        //MessageBox.Show(subitem.Text);
-                    //    }
-
-                    //}
-
-                    for (int i = 0; i < listview.Items.Count ; i++)
+                    try
                     {
-                        for (int j = 0; j < listview.Items[i].SubItems.Count; j++)
+                        //book = _Excel.Workbooks.Open(tempfile);//開啟舊檔案
+                        book = _Excel.Workbooks.Add(tempfile);
+                        //sheet = (Excel.Worksheet)book.Sheets[1];//指定活頁簿,代表Sheet1 
+                        sheet = (Excel.Worksheet)book.Sheets["Sheet1"];//也可以直接指定工作表名稱 
+                        for (int i = 0; i < listview.Items.Count; i++)
                         {
-                            System.Windows.Forms.Application.DoEvents();
-                            objExcel.Cells[i + 2, j + 1] = listview.Items[i].SubItems[j].Text;
-
+                            for (int j = 0; j < listview.Items[i].SubItems.Count; j++)
+                            {
+                                System.Windows.Forms.Application.DoEvents();
+                                sheet.Cells[i + 2, j + 1] = listview.Items[i].SubItems[j].Text;
+                            }
                         }
-
+                        _Excel.AlertBeforeOverwriting = false;
+                        book.SaveAs(destfile, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+                        DialogResult dr = MessageBox.Show("文件:" + destfile + "已输出,保存在" + System.Windows.Forms.Application.StartupPath + ",打开文件所在路径,点击是(Y),不打开点击否(N)", "输出完成",
+                                        MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                        if (dr == DialogResult.Yes)
+                        {
+                            System.Diagnostics.Process.Start(System.Windows.Forms.Application.StartupPath);
+                        }
                     }
-
-
-                    objExcel.DisplayAlerts = false;
-                    objExcel.AlertBeforeOverwriting = false;
-                    objWorkbook.SaveAs(destfile);
-                    objWorkbook.Close();
-                    objExcel.SaveWorkspace();
-                   // objExcel.ActiveWorkbook.SaveAs(destfile);
-                    objExcel.Quit();
-                    objExcel = null;
-                    p.KillExcel();
-                  DialogResult dr =  MessageBox.Show ("文件:" + destfile +"已输出,保存在" + System.Windows.Forms.Application.StartupPath+",打开文件所在路径,点击是(Y),不打开点击否(N)","输出完成",
-                        MessageBoxButtons.YesNoCancel ,MessageBoxIcon.Question );
-                  if (dr == DialogResult.Yes)
-                  {
-                      System.Diagnostics.Process.Start(System.Windows.Forms.Application.StartupPath);
-                  }
+                    finally
+                    {
+                        book.Close();
+                        book = null;
+                        p.KillExcel();
+                    }
                 }
             }
             else
@@ -341,6 +342,75 @@ namespace HA_OA
                 return;
             }
         }
+
+
+
+
+       public static  void initailExcel()
+        {
+            //檢查PC有無Excel在執行
+            bool flag = false;
+            foreach (var item in Process.GetProcesses())
+            {
+                if (item.ProcessName == "EXCEL")
+                {
+                    flag = true;
+                    break;
+                }
+            }
+
+            if (!flag)
+            {
+                _Excel = new Excel.Application();
+            }
+            else
+            {
+                object obj = Marshal.GetActiveObject("Excel.Application");//引用已在執行的Excel
+                _Excel = obj as Excel.Application;
+            }
+
+            _Excel.Visible = false ;//設false效能會比較好
+        }
+
+       public static  void operExcel()
+       {
+           Excel.Workbook book = null;
+           Excel.Worksheet sheet = null;
+           Excel.Range range = null;
+           string path = System.Windows.Forms.Application.StartupPath + " \\test.xlsx";
+           string tempfile = System.Windows.Forms.Application.StartupPath + @"\sample.xls";
+           p.downLoadFile(tempfile);
+           try
+           {
+               book = _Excel.Workbooks.Open(tempfile);//開啟舊檔案
+               //sheet = (Excel.Worksheet)book.Sheets[1];//指定活頁簿,代表Sheet1 
+               sheet = (Excel.Worksheet)book.Sheets["Sheet1"];//也可以直接指定工作表名稱 
+
+               range = sheet.get_Range("A5", "D23");
+               foreach (Excel.Range item in range)
+               {
+                   Console.WriteLine(item.Cells.Formula);
+                   Console.WriteLine(item.Cells.Value);
+                   Console.WriteLine(item.Cells.Value2);
+                   Console.WriteLine(item.Cells.Text);
+               }
+
+               book.Sheets.Add(After: sheet, Count: 1);
+               sheet = (Excel.Worksheet)book.Worksheets[2];
+               sheet.Name = "新的工作表";
+               //另存活頁簿
+               book.SaveAs(Filename: System.Windows.Forms.Application.StartupPath + "\\test1.xls", FileFormat: Excel.XlFileFormat.xlXMLSpreadsheet, AccessMode: Excel.XlSaveAsAccessMode.xlNoChange);
+           }
+           finally
+           {
+               book.Close();
+               book = null;
+           }
+       }
+
+
+ 
+
 
     }
 }
