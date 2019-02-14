@@ -60,7 +60,7 @@ namespace HA_OA
            
 
             SetListView(listviewInfo);
-            string sql = "select * from ha_otinfo where username ='" + p.LoginID.Name + "'";
+            string sql = "select * from ha_otinfo where username ='" + p.LoginID.Name + "' and date like '" + DateTime.Now.Year + "'";
             int totolrecord = 0;
             double totalhours = 0.0;
             LoadInfo2Listview(sql, listviewInfo, out totolrecord, out totalhours);

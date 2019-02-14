@@ -48,7 +48,7 @@ namespace HA_OA
 
            frmOverTime. SetListView(listviewInfo);
 
-           string sql = "select * from ha_leaveinfo where username ='" + p.LoginID.Name + "'";
+           string sql = "select * from ha_leaveinfo where username ='" + p.LoginID.Name + "' and date like '" + DateTime.Now.Year + "'";
             int totolrecord = 0;
             double totalhours = 0.0;
            frmOverTime.LoadInfo2Listview(sql, listviewInfo, out totolrecord, out totalhours);

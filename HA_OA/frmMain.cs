@@ -66,9 +66,9 @@ namespace HA_OA
 
             this.Text = "加班请假管理系统(当前用户:" + p.LoginID.Name +") ,Ver:" + Application.ProductVersion;
 
-            string sql = "select sum(hours) from ha_otinfo where username ='" +p.LoginID.Name +"'";
+            string sql = "select sum(hours) from ha_otinfo where username ='" + p.LoginID.Name + "' and date like '" + DateTime.Now.Year + "'";
             totalot = p.querySum(p.ConnStr, sql);
-            sql = "select sum(hours) from ha_leaveinfo where username ='" + p.LoginID.Name + "'";
+            sql = "select sum(hours) from ha_leaveinfo where username ='" + p.LoginID.Name + "' and date like '" + DateTime.Now.Year + "'";
             totalleave = p.querySum(p.ConnStr, sql);
 
         }
@@ -87,9 +87,9 @@ namespace HA_OA
         private void btnAllInfo_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear();
-            string sql =  "select sum(hours) from ha_otinfo where username ='" +p.LoginID.Name +"'";
+            string sql = "select sum(hours) from ha_otinfo where username ='" + p.LoginID.Name + "' and date like '" + DateTime.Now.Year + "'";
             totalot = p.querySum(p.ConnStr, sql);
-            sql = "select sum(hours) from ha_leaveinfo where username ='" + p.LoginID.Name + "'";
+            sql = "select sum(hours) from ha_leaveinfo where username ='" + p.LoginID.Name + "' and date like '" + DateTime.Now.Year + "'";
             totalleave = p.querySum(p.ConnStr, sql);
 
 
@@ -161,9 +161,9 @@ namespace HA_OA
         private void picAllInfo_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear();
-            string sql = "select sum(hours) from ha_otinfo where username ='" + p.LoginID.Name + "'";
+            string sql = "select sum(hours) from ha_otinfo where username ='" + p.LoginID.Name + "' and date like '" + DateTime.Now.Year + "'";
             totalot = p.querySum(p.ConnStr, sql);
-            sql = "select sum(hours) from ha_leaveinfo where username ='" + p.LoginID.Name + "'";
+            sql = "select sum(hours) from ha_leaveinfo where username ='" + p.LoginID.Name + "' and date like '" + DateTime.Now.Year + "'";
             totalleave = p.querySum(p.ConnStr, sql);
         }
 
